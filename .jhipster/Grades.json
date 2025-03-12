@@ -1,0 +1,95 @@
+{
+  "annotations": {
+    "changelogDate": "20250424171034"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "gradesCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "credit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "studyAttempt",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "examAttempt",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "processScore",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "examScore",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "score10",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "score4",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "letterGrade",
+      "fieldType": "LetterGrade",
+      "fieldValues": "A,APlus,B,BPlus,C,CPlus,D,DPlus,F,FPlus"
+    },
+    {
+      "fieldName": "evaluation",
+      "fieldType": "EvaluationScores",
+      "fieldValues": "Pass,Retake,Deferment"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Grades",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

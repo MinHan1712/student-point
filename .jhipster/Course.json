@@ -1,0 +1,115 @@
+{
+  "annotations": {
+    "changelogDate": "20250424162419"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "courseCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "courseTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "credits",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lecture",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tutorialDiscussion",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "practical",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "laboratory",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "selfStudy",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfSessions",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "courseType",
+      "fieldType": "CourseType",
+      "fieldValues": "Elective,Mandatory"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "semester",
+      "fieldType": "String"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Course",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "classes",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "classes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "faculties",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "faculties",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

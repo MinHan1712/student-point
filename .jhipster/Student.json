@@ -1,0 +1,120 @@
+{
+  "annotations": {
+    "changelogDate": "20250424154511"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "studentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fullName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfBirth",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "gender",
+      "fieldValues": "M,F,Others"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StudentStatus",
+      "fieldValues": "Withdrawn,Graduated,Deferment"
+    },
+    {
+      "fieldName": "dateEnrollment",
+      "fieldType": "Instant"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Student",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "classRegistration",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "classRegistration",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "conductScores",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "conductScores",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "statisticsDetails",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "statisticsDetails",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "grades",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "grades",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

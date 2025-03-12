@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20250424161236"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "registerDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ClassRegistrationStatus",
+      "fieldValues": "Completed,InProgress,Cancelled,Failed,Deferred,ExamPostponed,AwaitingGrade"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ClassRegistration",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

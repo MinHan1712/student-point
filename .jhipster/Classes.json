@@ -1,0 +1,124 @@
+{
+  "annotations": {
+    "changelogDate": "20250424155724"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "classCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "className",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "classroom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "credits",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfSessions",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalNumberOfStudents",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "classType",
+      "fieldType": "ClassesType",
+      "fieldValues": "Lecture,Lab,Tutorial"
+    },
+    {
+      "fieldName": "deliveryMode",
+      "fieldType": "DeliveryMode",
+      "fieldValues": "Online,Offline,Hybrid"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "academicYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentId",
+      "fieldType": "Long"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Classes",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "classRegistration",
+      "otherEntityRelationshipName": "classes",
+      "relationshipName": "classRegistration",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "grades",
+      "otherEntityRelationshipName": "classes",
+      "relationshipName": "grades",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

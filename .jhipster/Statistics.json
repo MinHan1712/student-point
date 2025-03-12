@@ -1,0 +1,75 @@
+{
+  "annotations": {
+    "changelogDate": "20250424173319"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "statisticsCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "academicYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "StatisticsType",
+      "fieldValues": "Scholarship,Warning,Graduation "
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Statistics",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "statisticsDetails",
+      "otherEntityRelationshipName": "statistics",
+      "relationshipName": "statisticsDetails",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

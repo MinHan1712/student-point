@@ -1,0 +1,66 @@
+{
+  "annotations": {
+    "changelogDate": "20250424172327"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "conductScoresCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "academicYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "classification",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "evaluation",
+      "fieldType": "EvaluationConductScores",
+      "fieldValues": "Good,Fair,Average,Poor"
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ConductScores",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

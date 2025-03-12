@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20250424164004"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "facultyCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "facultyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "establishedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentId",
+      "fieldType": "Long"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Faculties",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "teachers",
+      "otherEntityRelationshipName": "faculties",
+      "relationshipName": "teachers",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
