@@ -56,7 +56,7 @@
             <column name="academic_year" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="parent_id" type="bigint">
+            <column name="parent_id" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="created_by" type="varchar(50)">
@@ -116,7 +116,7 @@
             <column name="notes" type="string"/>
             <column name="description" type="string"/>
             <column name="academic_year" type="string"/>
-            <column name="parent_id" type="numeric"/>
+            <column name="parent_id" type="string"/>
             <column name="created_by" type="string"/>
             <column name="created_date" type="date"/>
             <column name="last_modified_by" type="string"/>

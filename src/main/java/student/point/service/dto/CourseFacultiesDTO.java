@@ -3,21 +3,16 @@ package student.point.service.dto;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-import student.point.domain.enumeration.ClassRegistrationStatus;
 
 /**
- * A DTO for the {@link student.point.domain.ClassRegistration} entity.
+ * A DTO for the {@link student.point.domain.CourseFaculties} entity.
  */
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class ClassRegistrationDTO implements Serializable {
+public class CourseFacultiesDTO implements Serializable {
 
     private Long id;
 
-    private Instant registerDate;
-
-    private ClassRegistrationStatus status;
-
-    private String remarks;
+    private Boolean status;
 
     private String createdBy;
 
@@ -27,9 +22,9 @@ public class ClassRegistrationDTO implements Serializable {
 
     private Instant lastModifiedDate;
 
-    private StudentDTO student;
+    private CourseDTO course;
 
-    private ClassesDTO classes;
+    private FacultiesDTO faculties;
 
     public Long getId() {
         return id;
@@ -39,28 +34,12 @@ public class ClassRegistrationDTO implements Serializable {
         this.id = id;
     }
 
-    public Instant getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(Instant registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public ClassRegistrationStatus getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(ClassRegistrationStatus status) {
+    public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 
     public String getCreatedBy() {
@@ -95,20 +74,20 @@ public class ClassRegistrationDTO implements Serializable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public StudentDTO getStudent() {
-        return student;
+    public CourseDTO getCourse() {
+        return course;
     }
 
-    public void setStudent(StudentDTO student) {
-        this.student = student;
+    public void setCourse(CourseDTO course) {
+        this.course = course;
     }
 
-    public ClassesDTO getClasses() {
-        return classes;
+    public FacultiesDTO getFaculties() {
+        return faculties;
     }
 
-    public void setClasses(ClassesDTO classes) {
-        this.classes = classes;
+    public void setFaculties(FacultiesDTO faculties) {
+        this.faculties = faculties;
     }
 
     @Override
@@ -116,15 +95,15 @@ public class ClassRegistrationDTO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ClassRegistrationDTO)) {
+        if (!(o instanceof CourseFacultiesDTO)) {
             return false;
         }
 
-        ClassRegistrationDTO classRegistrationDTO = (ClassRegistrationDTO) o;
+        CourseFacultiesDTO courseFacultiesDTO = (CourseFacultiesDTO) o;
         if (this.id == null) {
             return false;
         }
-        return Objects.equals(this.id, classRegistrationDTO.id);
+        return Objects.equals(this.id, courseFacultiesDTO.id);
     }
 
     @Override
@@ -135,17 +114,15 @@ public class ClassRegistrationDTO implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "ClassRegistrationDTO{" +
+        return "CourseFacultiesDTO{" +
             "id=" + getId() +
-            ", registerDate='" + getRegisterDate() + "'" +
             ", status='" + getStatus() + "'" +
-            ", remarks='" + getRemarks() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             ", lastModifiedDate='" + getLastModifiedDate() + "'" +
-            ", student=" + getStudent() +
-            ", classes=" + getClasses() +
+            ", course=" + getCourse() +
+            ", faculties=" + getFaculties() +
             "}";
     }
 }

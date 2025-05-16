@@ -64,7 +64,7 @@
     },
     {
       "fieldName": "parentId",
-      "fieldType": "Long"
+      "fieldType": "String"
     },
     {
       "autoGenerate": true,

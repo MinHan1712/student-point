@@ -5,17 +5,8 @@
   "dto": "mapstruct",
   "fields": [
     {
-      "fieldName": "registerDate",
-      "fieldType": "Instant"
-    },
-    {
       "fieldName": "status",
-      "fieldType": "ClassRegistrationStatus",
-      "fieldValues": "Completed,InProgress,Cancelled,Failed,Deferred,ExamPostponed,AwaitingGrade"
-    },
-    {
-      "fieldName": "remarks",
-      "fieldType": "String"
+      "fieldType": "Boolean"
     },
     {
       "autoGenerate": true,
@@ -49,7 +40,7 @@
     }
   ],
   "jpaMetamodelFiltering": true,
-  "name": "ClassRegistration",
+  "name": "CourseFaculties",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [],

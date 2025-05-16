@@ -4,49 +4,27 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 import org.springdoc.core.annotations.ParameterObject;
-import student.point.domain.enumeration.ClassRegistrationStatus;
 import tech.jhipster.service.Criteria;
 import tech.jhipster.service.filter.*;
 
 /**
- * Criteria class for the {@link student.point.domain.ClassRegistration} entity. This class is used
- * in {@link student.point.web.rest.ClassRegistrationResource} to receive all the possible filtering options from
+ * Criteria class for the {@link student.point.domain.CourseFaculties} entity. This class is used
+ * in {@link student.point.web.rest.CourseFacultiesResource} to receive all the possible filtering options from
  * the Http GET request parameters.
  * For example the following could be a valid request:
- * {@code /class-registrations?id.greaterThan=5&attr1.contains=something&attr2.specified=false}
+ * {@code /course-faculties?id.greaterThan=5&attr1.contains=something&attr2.specified=false}
  * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
  * fix type specific filters.
  */
 @ParameterObject
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class ClassRegistrationCriteria implements Serializable, Criteria {
-
-    /**
-     * Class for filtering ClassRegistrationStatus
-     */
-    public static class ClassRegistrationStatusFilter extends Filter<ClassRegistrationStatus> {
-
-        public ClassRegistrationStatusFilter() {}
-
-        public ClassRegistrationStatusFilter(ClassRegistrationStatusFilter filter) {
-            super(filter);
-        }
-
-        @Override
-        public ClassRegistrationStatusFilter copy() {
-            return new ClassRegistrationStatusFilter(this);
-        }
-    }
+public class CourseFacultiesCriteria implements Serializable, Criteria {
 
     private static final long serialVersionUID = 1L;
 
     private LongFilter id;
 
-    private InstantFilter registerDate;
-
-    private ClassRegistrationStatusFilter status;
-
-    private StringFilter remarks;
+    private BooleanFilter status;
 
     private StringFilter createdBy;
 
@@ -56,31 +34,29 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
 
     private InstantFilter lastModifiedDate;
 
-    private LongFilter studentId;
+    private LongFilter courseId;
 
-    private LongFilter classesId;
+    private LongFilter facultiesId;
 
     private Boolean distinct;
 
-    public ClassRegistrationCriteria() {}
+    public CourseFacultiesCriteria() {}
 
-    public ClassRegistrationCriteria(ClassRegistrationCriteria other) {
+    public CourseFacultiesCriteria(CourseFacultiesCriteria other) {
         this.id = other.optionalId().map(LongFilter::copy).orElse(null);
-        this.registerDate = other.optionalRegisterDate().map(InstantFilter::copy).orElse(null);
-        this.status = other.optionalStatus().map(ClassRegistrationStatusFilter::copy).orElse(null);
-        this.remarks = other.optionalRemarks().map(StringFilter::copy).orElse(null);
+        this.status = other.optionalStatus().map(BooleanFilter::copy).orElse(null);
         this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
         this.createdDate = other.optionalCreatedDate().map(InstantFilter::copy).orElse(null);
         this.lastModifiedBy = other.optionalLastModifiedBy().map(StringFilter::copy).orElse(null);
         this.lastModifiedDate = other.optionalLastModifiedDate().map(InstantFilter::copy).orElse(null);
-        this.studentId = other.optionalStudentId().map(LongFilter::copy).orElse(null);
-        this.classesId = other.optionalClassesId().map(LongFilter::copy).orElse(null);
+        this.courseId = other.optionalCourseId().map(LongFilter::copy).orElse(null);
+        this.facultiesId = other.optionalFacultiesId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
     @Override
-    public ClassRegistrationCriteria copy() {
-        return new ClassRegistrationCriteria(this);
+    public CourseFacultiesCriteria copy() {
+        return new CourseFacultiesCriteria(this);
     }
 
     public LongFilter getId() {
@@ -102,61 +78,23 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public InstantFilter getRegisterDate() {
-        return registerDate;
-    }
-
-    public Optional<InstantFilter> optionalRegisterDate() {
-        return Optional.ofNullable(registerDate);
-    }
-
-    public InstantFilter registerDate() {
-        if (registerDate == null) {
-            setRegisterDate(new InstantFilter());
-        }
-        return registerDate;
-    }
-
-    public void setRegisterDate(InstantFilter registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public ClassRegistrationStatusFilter getStatus() {
+    public BooleanFilter getStatus() {
         return status;
     }
 
-    public Optional<ClassRegistrationStatusFilter> optionalStatus() {
+    public Optional<BooleanFilter> optionalStatus() {
         return Optional.ofNullable(status);
     }
 
-    public ClassRegistrationStatusFilter status() {
+    public BooleanFilter status() {
         if (status == null) {
-            setStatus(new ClassRegistrationStatusFilter());
+            setStatus(new BooleanFilter());
         }
         return status;
     }
 
-    public void setStatus(ClassRegistrationStatusFilter status) {
+    public void setStatus(BooleanFilter status) {
         this.status = status;
-    }
-
-    public StringFilter getRemarks() {
-        return remarks;
-    }
-
-    public Optional<StringFilter> optionalRemarks() {
-        return Optional.ofNullable(remarks);
-    }
-
-    public StringFilter remarks() {
-        if (remarks == null) {
-            setRemarks(new StringFilter());
-        }
-        return remarks;
-    }
-
-    public void setRemarks(StringFilter remarks) {
-        this.remarks = remarks;
     }
 
     public StringFilter getCreatedBy() {
@@ -235,42 +173,42 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public LongFilter getStudentId() {
-        return studentId;
+    public LongFilter getCourseId() {
+        return courseId;
     }
 
-    public Optional<LongFilter> optionalStudentId() {
-        return Optional.ofNullable(studentId);
+    public Optional<LongFilter> optionalCourseId() {
+        return Optional.ofNullable(courseId);
     }
 
-    public LongFilter studentId() {
-        if (studentId == null) {
-            setStudentId(new LongFilter());
+    public LongFilter courseId() {
+        if (courseId == null) {
+            setCourseId(new LongFilter());
         }
-        return studentId;
+        return courseId;
     }
 
-    public void setStudentId(LongFilter studentId) {
-        this.studentId = studentId;
+    public void setCourseId(LongFilter courseId) {
+        this.courseId = courseId;
     }
 
-    public LongFilter getClassesId() {
-        return classesId;
+    public LongFilter getFacultiesId() {
+        return facultiesId;
     }
 
-    public Optional<LongFilter> optionalClassesId() {
-        return Optional.ofNullable(classesId);
+    public Optional<LongFilter> optionalFacultiesId() {
+        return Optional.ofNullable(facultiesId);
     }
 
-    public LongFilter classesId() {
-        if (classesId == null) {
-            setClassesId(new LongFilter());
+    public LongFilter facultiesId() {
+        if (facultiesId == null) {
+            setFacultiesId(new LongFilter());
         }
-        return classesId;
+        return facultiesId;
     }
 
-    public void setClassesId(LongFilter classesId) {
-        this.classesId = classesId;
+    public void setFacultiesId(LongFilter facultiesId) {
+        this.facultiesId = facultiesId;
     }
 
     public Boolean getDistinct() {
@@ -300,53 +238,37 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final ClassRegistrationCriteria that = (ClassRegistrationCriteria) o;
+        final CourseFacultiesCriteria that = (CourseFacultiesCriteria) o;
         return (
             Objects.equals(id, that.id) &&
-            Objects.equals(registerDate, that.registerDate) &&
             Objects.equals(status, that.status) &&
-            Objects.equals(remarks, that.remarks) &&
             Objects.equals(createdBy, that.createdBy) &&
             Objects.equals(createdDate, that.createdDate) &&
             Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
             Objects.equals(lastModifiedDate, that.lastModifiedDate) &&
-            Objects.equals(studentId, that.studentId) &&
-            Objects.equals(classesId, that.classesId) &&
+            Objects.equals(courseId, that.courseId) &&
+            Objects.equals(facultiesId, that.facultiesId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            registerDate,
-            status,
-            remarks,
-            createdBy,
-            createdDate,
-            lastModifiedBy,
-            lastModifiedDate,
-            studentId,
-            classesId,
-            distinct
-        );
+        return Objects.hash(id, status, createdBy, createdDate, lastModifiedBy, lastModifiedDate, courseId, facultiesId, distinct);
     }
 
     // prettier-ignore
     @Override
     public String toString() {
-        return "ClassRegistrationCriteria{" +
+        return "CourseFacultiesCriteria{" +
             optionalId().map(f -> "id=" + f + ", ").orElse("") +
-            optionalRegisterDate().map(f -> "registerDate=" + f + ", ").orElse("") +
             optionalStatus().map(f -> "status=" + f + ", ").orElse("") +
-            optionalRemarks().map(f -> "remarks=" + f + ", ").orElse("") +
             optionalCreatedBy().map(f -> "createdBy=" + f + ", ").orElse("") +
             optionalCreatedDate().map(f -> "createdDate=" + f + ", ").orElse("") +
             optionalLastModifiedBy().map(f -> "lastModifiedBy=" + f + ", ").orElse("") +
             optionalLastModifiedDate().map(f -> "lastModifiedDate=" + f + ", ").orElse("") +
-            optionalStudentId().map(f -> "studentId=" + f + ", ").orElse("") +
-            optionalClassesId().map(f -> "classesId=" + f + ", ").orElse("") +
+            optionalCourseId().map(f -> "courseId=" + f + ", ").orElse("") +
+            optionalFacultiesId().map(f -> "facultiesId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

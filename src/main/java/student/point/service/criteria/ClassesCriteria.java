@@ -88,7 +88,7 @@ public class ClassesCriteria implements Serializable, Criteria {
 
     private StringFilter academicYear;
 
-    private LongFilter parentId;
+    private StringFilter parentId;
 
     private StringFilter createdBy;
 
@@ -126,7 +126,7 @@ public class ClassesCriteria implements Serializable, Criteria {
         this.notes = other.optionalNotes().map(StringFilter::copy).orElse(null);
         this.description = other.optionalDescription().map(StringFilter::copy).orElse(null);
         this.academicYear = other.optionalAcademicYear().map(StringFilter::copy).orElse(null);
-        this.parentId = other.optionalParentId().map(LongFilter::copy).orElse(null);
+        this.parentId = other.optionalParentId().map(StringFilter::copy).orElse(null);
         this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
         this.createdDate = other.optionalCreatedDate().map(InstantFilter::copy).orElse(null);
         this.lastModifiedBy = other.optionalLastModifiedBy().map(StringFilter::copy).orElse(null);
@@ -428,22 +428,22 @@ public class ClassesCriteria implements Serializable, Criteria {
         this.academicYear = academicYear;
     }
 
-    public LongFilter getParentId() {
+    public StringFilter getParentId() {
         return parentId;
     }
 
-    public Optional<LongFilter> optionalParentId() {
+    public Optional<StringFilter> optionalParentId() {
         return Optional.ofNullable(parentId);
     }
 
-    public LongFilter parentId() {
+    public StringFilter parentId() {
         if (parentId == null) {
-            setParentId(new LongFilter());
+            setParentId(new StringFilter());
         }
         return parentId;
     }
 
-    public void setParentId(LongFilter parentId) {
+    public void setParentId(StringFilter parentId) {
         this.parentId = parentId;
     }
 
