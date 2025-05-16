@@ -17,7 +17,7 @@ public class CourseDTO implements Serializable {
 
     private String courseTitle;
 
-    private Instant credits;
+    private Integer credits;
 
     private Integer lecture;
 
@@ -71,11 +71,11 @@ public class CourseDTO implements Serializable {
         this.courseTitle = courseTitle;
     }
 
-    public Instant getCredits() {
+    public Integer getCredits() {
         return credits;
     }
 
-    public void setCredits(Instant credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
 
@@ -219,7 +219,7 @@ public class CourseDTO implements Serializable {
             "id=" + getId() +
             ", courseCode='" + getCourseCode() + "'" +
             ", courseTitle='" + getCourseTitle() + "'" +
-            ", credits='" + getCredits() + "'" +
+            ", credits=" + getCredits() +
             ", lecture=" + getLecture() +
             ", tutorialDiscussion=" + getTutorialDiscussion() +
             ", practical=" + getPractical() +

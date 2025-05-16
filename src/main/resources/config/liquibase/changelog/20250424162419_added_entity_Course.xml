@@ -20,7 +20,7 @@
             <column name="course_title" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="credits" type="${datetimeType}">
+            <column name="credits" type="integer">
                 <constraints nullable="true" />
             </column>
             <column name="lecture" type="integer">
@@ -67,7 +67,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="course" columnName="credits" columnDataType="${datetimeType}"/>
         <dropDefaultValue tableName="course" columnName="created_date" columnDataType="${datetimeType}"/>
         <dropDefaultValue tableName="course" columnName="last_modified_date" columnDataType="${datetimeType}"/>
     </changeSet>
@@ -91,7 +90,7 @@
             <column name="id" type="numeric"/>
             <column name="course_code" type="string"/>
             <column name="course_title" type="string"/>
-            <column name="credits" type="date"/>
+            <column name="credits" type="numeric"/>
             <column name="lecture" type="numeric"/>
             <column name="tutorial_discussion" type="numeric"/>
             <column name="practical" type="numeric"/>

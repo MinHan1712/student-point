@@ -26,9 +26,15 @@ public class FacultiesDTO implements Serializable {
 
     private String notes;
 
-    private Long parentId;
+    private String parentId;
 
-    private CourseDTO course;
+    private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
 
     public Long getId() {
         return id;
@@ -94,20 +100,44 @@ public class FacultiesDTO implements Serializable {
         this.notes = notes;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
-    public CourseDTO getCourse() {
-        return course;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCourse(CourseDTO course) {
-        this.course = course;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Instant getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override
@@ -143,8 +173,11 @@ public class FacultiesDTO implements Serializable {
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", location='" + getLocation() + "'" +
             ", notes='" + getNotes() + "'" +
-            ", parentId=" + getParentId() +
-            ", course=" + getCourse() +
+            ", parentId='" + getParentId() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedBy='" + getLastModifiedBy() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             "}";
     }
 }

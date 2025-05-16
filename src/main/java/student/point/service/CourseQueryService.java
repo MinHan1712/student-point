@@ -133,9 +133,11 @@ public class CourseQueryService extends QueryService<Course> {
                     buildSpecification(criteria.getClassesId(), root -> root.join(Course_.classes, JoinType.LEFT).get(Classes_.id))
                 );
             }
-            if (criteria.getFacultiesId() != null) {
+            if (criteria.getCourseFacultiesId() != null) {
                 specification = specification.and(
-                    buildSpecification(criteria.getFacultiesId(), root -> root.join(Course_.faculties, JoinType.LEFT).get(Faculties_.id))
+                    buildSpecification(criteria.getCourseFacultiesId(), root ->
+                        root.join(Course_.courseFaculties, JoinType.LEFT).get(CourseFaculties_.id)
+                    )
                 );
             }
         }

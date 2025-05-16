@@ -4,15 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import student.point.domain.enumeration.ClassRegistrationStatus;
 
 /**
- * A ClassRegistration.
+ * A CourseFaculties.
  */
 @Entity
-@Table(name = "class_registration")
+@Table(name = "course_faculties")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class ClassRegistration implements Serializable {
+public class CourseFaculties implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,15 +21,8 @@ public class ClassRegistration implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "register_date")
-    private Instant registerDate;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private ClassRegistrationStatus status;
-
-    @Column(name = "remarks")
-    private String remarks;
+    private Boolean status;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -45,12 +37,12 @@ public class ClassRegistration implements Serializable {
     private Instant lastModifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classRegistrations", "conductScores", "statisticsDetails", "grades" }, allowSetters = true)
-    private Student student;
+    @JsonIgnoreProperties(value = { "classes", "courseFaculties" }, allowSetters = true)
+    private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classRegistrations", "grades", "course", "teachers" }, allowSetters = true)
-    private Classes classes;
+    @JsonIgnoreProperties(value = { "teachers", "courseFaculties" }, allowSetters = true)
+    private Faculties faculties;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -58,7 +50,7 @@ public class ClassRegistration implements Serializable {
         return this.id;
     }
 
-    public ClassRegistration id(Long id) {
+    public CourseFaculties id(Long id) {
         this.setId(id);
         return this;
     }
@@ -67,50 +59,24 @@ public class ClassRegistration implements Serializable {
         this.id = id;
     }
 
-    public Instant getRegisterDate() {
-        return this.registerDate;
-    }
-
-    public ClassRegistration registerDate(Instant registerDate) {
-        this.setRegisterDate(registerDate);
-        return this;
-    }
-
-    public void setRegisterDate(Instant registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public ClassRegistrationStatus getStatus() {
+    public Boolean getStatus() {
         return this.status;
     }
 
-    public ClassRegistration status(ClassRegistrationStatus status) {
+    public CourseFaculties status(Boolean status) {
         this.setStatus(status);
         return this;
     }
 
-    public void setStatus(ClassRegistrationStatus status) {
+    public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public String getRemarks() {
-        return this.remarks;
-    }
-
-    public ClassRegistration remarks(String remarks) {
-        this.setRemarks(remarks);
-        return this;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 
     public String getCreatedBy() {
         return this.createdBy;
     }
 
-    public ClassRegistration createdBy(String createdBy) {
+    public CourseFaculties createdBy(String createdBy) {
         this.setCreatedBy(createdBy);
         return this;
     }
@@ -123,7 +89,7 @@ public class ClassRegistration implements Serializable {
         return this.createdDate;
     }
 
-    public ClassRegistration createdDate(Instant createdDate) {
+    public CourseFaculties createdDate(Instant createdDate) {
         this.setCreatedDate(createdDate);
         return this;
     }
@@ -136,7 +102,7 @@ public class ClassRegistration implements Serializable {
         return this.lastModifiedBy;
     }
 
-    public ClassRegistration lastModifiedBy(String lastModifiedBy) {
+    public CourseFaculties lastModifiedBy(String lastModifiedBy) {
         this.setLastModifiedBy(lastModifiedBy);
         return this;
     }
@@ -149,7 +115,7 @@ public class ClassRegistration implements Serializable {
         return this.lastModifiedDate;
     }
 
-    public ClassRegistration lastModifiedDate(Instant lastModifiedDate) {
+    public CourseFaculties lastModifiedDate(Instant lastModifiedDate) {
         this.setLastModifiedDate(lastModifiedDate);
         return this;
     }
@@ -158,29 +124,29 @@ public class ClassRegistration implements Serializable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public Student getStudent() {
-        return this.student;
+    public Course getCourse() {
+        return this.course;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public ClassRegistration student(Student student) {
-        this.setStudent(student);
+    public CourseFaculties course(Course course) {
+        this.setCourse(course);
         return this;
     }
 
-    public Classes getClasses() {
-        return this.classes;
+    public Faculties getFaculties() {
+        return this.faculties;
     }
 
-    public void setClasses(Classes classes) {
-        this.classes = classes;
+    public void setFaculties(Faculties faculties) {
+        this.faculties = faculties;
     }
 
-    public ClassRegistration classes(Classes classes) {
-        this.setClasses(classes);
+    public CourseFaculties faculties(Faculties faculties) {
+        this.setFaculties(faculties);
         return this;
     }
 
@@ -191,10 +157,10 @@ public class ClassRegistration implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ClassRegistration)) {
+        if (!(o instanceof CourseFaculties)) {
             return false;
         }
-        return getId() != null && getId().equals(((ClassRegistration) o).getId());
+        return getId() != null && getId().equals(((CourseFaculties) o).getId());
     }
 
     @Override
@@ -206,11 +172,9 @@ public class ClassRegistration implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "ClassRegistration{" +
+        return "CourseFaculties{" +
             "id=" + getId() +
-            ", registerDate='" + getRegisterDate() + "'" +
             ", status='" + getStatus() + "'" +
-            ", remarks='" + getRemarks() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

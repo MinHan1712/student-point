@@ -122,7 +122,7 @@ public class ClassesQueryService extends QueryService<Classes> {
                 specification = specification.and(buildStringSpecification(criteria.getAcademicYear(), Classes_.academicYear));
             }
             if (criteria.getParentId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getParentId(), Classes_.parentId));
+                specification = specification.and(buildStringSpecification(criteria.getParentId(), Classes_.parentId));
             }
             if (criteria.getCreatedBy() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), Classes_.createdBy));

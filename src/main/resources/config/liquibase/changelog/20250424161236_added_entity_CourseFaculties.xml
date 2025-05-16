@@ -7,20 +7,14 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity ClassRegistration.
+        Added the entity CourseFaculties.
     -->
     <changeSet id="20250424161236-1" author="jhipster">
-        <createTable tableName="class_registration">
+        <createTable tableName="course_faculties">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="register_date" type="${datetimeType}">
-                <constraints nullable="true" />
-            </column>
-            <column name="status" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="remarks" type="varchar(255)">
+            <column name="status" type="boolean">
                 <constraints nullable="true" />
             </column>
             <column name="created_by" type="varchar(50)">
@@ -35,17 +29,16 @@
             <column name="last_modified_date" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
-            <column name="student_id" type="bigint">
+            <column name="course_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="classes_id" type="bigint">
+            <column name="faculties_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="class_registration" columnName="register_date" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="class_registration" columnName="created_date" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="class_registration" columnName="last_modified_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="course_faculties" columnName="created_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="course_faculties" columnName="last_modified_date" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -60,14 +53,12 @@
     -->
     <changeSet id="20250424161236-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/class_registration.csv"
+                  file="config/liquibase/fake-data/course_faculties.csv"
                   separator=";"
-                  tableName="class_registration"
+                  tableName="course_faculties"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="register_date" type="date"/>
-            <column name="status" type="string"/>
-            <column name="remarks" type="string"/>
+            <column name="status" type="boolean"/>
             <column name="created_by" type="string"/>
             <column name="created_date" type="date"/>
             <column name="last_modified_by" type="string"/>
