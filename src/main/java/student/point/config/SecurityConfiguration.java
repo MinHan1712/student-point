@@ -49,6 +49,7 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/api/account/reset-password/finish")).permitAll()
                     .requestMatchers(mvc.pattern("/api/admin/**")).permitAll()
                     .requestMatchers(mvc.pattern("/api/**")).permitAll()
+                    .requestMatchers(mvc.pattern("/**")).permitAll()
                     .requestMatchers(mvc.pattern("/v3/api-docs/**")).permitAll()
                     .requestMatchers(mvc.pattern("/management/health")).permitAll()
                     .requestMatchers(mvc.pattern("/management/health/**")).permitAll()

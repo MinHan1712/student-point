@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250424165838"
   },
+  "databaseType": "sql",
   "dto": "mapstruct",
   "fields": [
     {
