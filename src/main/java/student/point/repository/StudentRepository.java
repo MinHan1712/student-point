@@ -15,4 +15,5 @@ import student.point.domain.enumeration.StudentStatus;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
     List<Student> findAllByIdInAndStatus(List<Long> ids, StudentStatus status);
+    List<Student> findAllByClasName(String className);
 }

@@ -80,6 +80,10 @@ public class StudentCriteria implements Serializable, Criteria {
 
     private InstantFilter dateEnrollment;
 
+    private StringFilter clasName;
+
+    private StringFilter courseYear;
+
     private StringFilter createdBy;
 
     private InstantFilter createdDate;
@@ -95,6 +99,8 @@ public class StudentCriteria implements Serializable, Criteria {
     private LongFilter statisticsDetailsId;
 
     private LongFilter gradesId;
+
+    private LongFilter facultiesId;
 
     private Boolean distinct;
 
@@ -112,6 +118,8 @@ public class StudentCriteria implements Serializable, Criteria {
         this.notes = other.optionalNotes().map(StringFilter::copy).orElse(null);
         this.status = other.optionalStatus().map(StudentStatusFilter::copy).orElse(null);
         this.dateEnrollment = other.optionalDateEnrollment().map(InstantFilter::copy).orElse(null);
+        this.clasName = other.optionalClasName().map(StringFilter::copy).orElse(null);
+        this.courseYear = other.optionalCourseYear().map(StringFilter::copy).orElse(null);
         this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
         this.createdDate = other.optionalCreatedDate().map(InstantFilter::copy).orElse(null);
         this.lastModifiedBy = other.optionalLastModifiedBy().map(StringFilter::copy).orElse(null);
@@ -120,6 +128,7 @@ public class StudentCriteria implements Serializable, Criteria {
         this.conductScoresId = other.optionalConductScoresId().map(LongFilter::copy).orElse(null);
         this.statisticsDetailsId = other.optionalStatisticsDetailsId().map(LongFilter::copy).orElse(null);
         this.gradesId = other.optionalGradesId().map(LongFilter::copy).orElse(null);
+        this.facultiesId = other.optionalFacultiesId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -337,6 +346,44 @@ public class StudentCriteria implements Serializable, Criteria {
         this.dateEnrollment = dateEnrollment;
     }
 
+    public StringFilter getClasName() {
+        return clasName;
+    }
+
+    public Optional<StringFilter> optionalClasName() {
+        return Optional.ofNullable(clasName);
+    }
+
+    public StringFilter clasName() {
+        if (clasName == null) {
+            setClasName(new StringFilter());
+        }
+        return clasName;
+    }
+
+    public void setClasName(StringFilter clasName) {
+        this.clasName = clasName;
+    }
+
+    public StringFilter getCourseYear() {
+        return courseYear;
+    }
+
+    public Optional<StringFilter> optionalCourseYear() {
+        return Optional.ofNullable(courseYear);
+    }
+
+    public StringFilter courseYear() {
+        if (courseYear == null) {
+            setCourseYear(new StringFilter());
+        }
+        return courseYear;
+    }
+
+    public void setCourseYear(StringFilter courseYear) {
+        this.courseYear = courseYear;
+    }
+
     public StringFilter getCreatedBy() {
         return createdBy;
     }
@@ -489,6 +536,25 @@ public class StudentCriteria implements Serializable, Criteria {
         this.gradesId = gradesId;
     }
 
+    public LongFilter getFacultiesId() {
+        return facultiesId;
+    }
+
+    public Optional<LongFilter> optionalFacultiesId() {
+        return Optional.ofNullable(facultiesId);
+    }
+
+    public LongFilter facultiesId() {
+        if (facultiesId == null) {
+            setFacultiesId(new LongFilter());
+        }
+        return facultiesId;
+    }
+
+    public void setFacultiesId(LongFilter facultiesId) {
+        this.facultiesId = facultiesId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -529,6 +595,8 @@ public class StudentCriteria implements Serializable, Criteria {
             Objects.equals(notes, that.notes) &&
             Objects.equals(status, that.status) &&
             Objects.equals(dateEnrollment, that.dateEnrollment) &&
+            Objects.equals(clasName, that.clasName) &&
+            Objects.equals(courseYear, that.courseYear) &&
             Objects.equals(createdBy, that.createdBy) &&
             Objects.equals(createdDate, that.createdDate) &&
             Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
@@ -537,6 +605,7 @@ public class StudentCriteria implements Serializable, Criteria {
             Objects.equals(conductScoresId, that.conductScoresId) &&
             Objects.equals(statisticsDetailsId, that.statisticsDetailsId) &&
             Objects.equals(gradesId, that.gradesId) &&
+            Objects.equals(facultiesId, that.facultiesId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -555,6 +624,8 @@ public class StudentCriteria implements Serializable, Criteria {
             notes,
             status,
             dateEnrollment,
+            clasName,
+            courseYear,
             createdBy,
             createdDate,
             lastModifiedBy,
@@ -563,6 +634,7 @@ public class StudentCriteria implements Serializable, Criteria {
             conductScoresId,
             statisticsDetailsId,
             gradesId,
+            facultiesId,
             distinct
         );
     }
@@ -582,6 +654,8 @@ public class StudentCriteria implements Serializable, Criteria {
             optionalNotes().map(f -> "notes=" + f + ", ").orElse("") +
             optionalStatus().map(f -> "status=" + f + ", ").orElse("") +
             optionalDateEnrollment().map(f -> "dateEnrollment=" + f + ", ").orElse("") +
+            optionalClasName().map(f -> "clasName=" + f + ", ").orElse("") +
+            optionalCourseYear().map(f -> "courseYear=" + f + ", ").orElse("") +
             optionalCreatedBy().map(f -> "createdBy=" + f + ", ").orElse("") +
             optionalCreatedDate().map(f -> "createdDate=" + f + ", ").orElse("") +
             optionalLastModifiedBy().map(f -> "lastModifiedBy=" + f + ", ").orElse("") +
@@ -590,6 +664,7 @@ public class StudentCriteria implements Serializable, Criteria {
             optionalConductScoresId().map(f -> "conductScoresId=" + f + ", ").orElse("") +
             optionalStatisticsDetailsId().map(f -> "statisticsDetailsId=" + f + ", ").orElse("") +
             optionalGradesId().map(f -> "gradesId=" + f + ", ").orElse("") +
+            optionalFacultiesId().map(f -> "facultiesId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

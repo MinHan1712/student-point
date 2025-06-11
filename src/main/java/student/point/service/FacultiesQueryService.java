@@ -125,6 +125,18 @@ public class FacultiesQueryService extends QueryService<Faculties> {
                     )
                 );
             }
+            if (criteria.getStudentId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getStudentId(), root -> root.join(Faculties_.students, JoinType.LEFT).get(Student_.id))
+                );
+            }
+            if (criteria.getClassCourseId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getClassCourseId(), root ->
+                        root.join(Faculties_.classCourses, JoinType.LEFT).get(ClassCourse_.id)
+                    )
+                );
+            }
         }
         return specification;
     }

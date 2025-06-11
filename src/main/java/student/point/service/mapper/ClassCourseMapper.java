@@ -1,18 +1,18 @@
 package student.point.service.mapper;
 
 import org.mapstruct.*;
+import student.point.domain.ClassCourse;
 import student.point.domain.Faculties;
-import student.point.domain.Student;
+import student.point.service.dto.ClassCourseDTO;
 import student.point.service.dto.FacultiesDTO;
-import student.point.service.dto.StudentDTO;
 
 /**
- * Mapper for the entity {@link Student} and its DTO {@link StudentDTO}.
+ * Mapper for the entity {@link ClassCourse} and its DTO {@link ClassCourseDTO}.
  */
 @Mapper(componentModel = "spring")
-public interface StudentMapper extends EntityMapper<StudentDTO, Student> {
+public interface ClassCourseMapper extends EntityMapper<ClassCourseDTO, ClassCourse> {
     @Mapping(target = "faculties", source = "faculties", qualifiedByName = "facultiesId")
-    StudentDTO toDto(Student s);
+    ClassCourseDTO toDto(ClassCourse s);
 
     @Named("facultiesId")
     FacultiesDTO toDtoFacultiesId(Faculties faculties);

@@ -107,6 +107,12 @@ public class StudentQueryService extends QueryService<Student> {
             if (criteria.getDateEnrollment() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDateEnrollment(), Student_.dateEnrollment));
             }
+            if (criteria.getClasName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getClasName(), Student_.clasName));
+            }
+            if (criteria.getCourseYear() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCourseYear(), Student_.courseYear));
+            }
             if (criteria.getCreatedBy() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), Student_.createdBy));
             }
@@ -143,6 +149,11 @@ public class StudentQueryService extends QueryService<Student> {
             if (criteria.getGradesId() != null) {
                 specification = specification.and(
                     buildSpecification(criteria.getGradesId(), root -> root.join(Student_.grades, JoinType.LEFT).get(Grades_.id))
+                );
+            }
+            if (criteria.getFacultiesId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getFacultiesId(), root -> root.join(Student_.faculties, JoinType.LEFT).get(Faculties_.id))
                 );
             }
         }

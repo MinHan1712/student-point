@@ -52,6 +52,10 @@ public class FacultiesCriteria implements Serializable, Criteria {
 
     private LongFilter courseFacultiesId;
 
+    private LongFilter studentId;
+
+    private LongFilter classCourseId;
+
     private Boolean distinct;
 
     public FacultiesCriteria() {}
@@ -72,6 +76,8 @@ public class FacultiesCriteria implements Serializable, Criteria {
         this.lastModifiedDate = other.optionalLastModifiedDate().map(InstantFilter::copy).orElse(null);
         this.teachersId = other.optionalTeachersId().map(LongFilter::copy).orElse(null);
         this.courseFacultiesId = other.optionalCourseFacultiesId().map(LongFilter::copy).orElse(null);
+        this.studentId = other.optionalStudentId().map(LongFilter::copy).orElse(null);
+        this.classCourseId = other.optionalClassCourseId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -365,6 +371,44 @@ public class FacultiesCriteria implements Serializable, Criteria {
         this.courseFacultiesId = courseFacultiesId;
     }
 
+    public LongFilter getStudentId() {
+        return studentId;
+    }
+
+    public Optional<LongFilter> optionalStudentId() {
+        return Optional.ofNullable(studentId);
+    }
+
+    public LongFilter studentId() {
+        if (studentId == null) {
+            setStudentId(new LongFilter());
+        }
+        return studentId;
+    }
+
+    public void setStudentId(LongFilter studentId) {
+        this.studentId = studentId;
+    }
+
+    public LongFilter getClassCourseId() {
+        return classCourseId;
+    }
+
+    public Optional<LongFilter> optionalClassCourseId() {
+        return Optional.ofNullable(classCourseId);
+    }
+
+    public LongFilter classCourseId() {
+        if (classCourseId == null) {
+            setClassCourseId(new LongFilter());
+        }
+        return classCourseId;
+    }
+
+    public void setClassCourseId(LongFilter classCourseId) {
+        this.classCourseId = classCourseId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -409,6 +453,8 @@ public class FacultiesCriteria implements Serializable, Criteria {
             Objects.equals(lastModifiedDate, that.lastModifiedDate) &&
             Objects.equals(teachersId, that.teachersId) &&
             Objects.equals(courseFacultiesId, that.courseFacultiesId) &&
+            Objects.equals(studentId, that.studentId) &&
+            Objects.equals(classCourseId, that.classCourseId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -431,6 +477,8 @@ public class FacultiesCriteria implements Serializable, Criteria {
             lastModifiedDate,
             teachersId,
             courseFacultiesId,
+            studentId,
+            classCourseId,
             distinct
         );
     }
@@ -454,6 +502,8 @@ public class FacultiesCriteria implements Serializable, Criteria {
             optionalLastModifiedDate().map(f -> "lastModifiedDate=" + f + ", ").orElse("") +
             optionalTeachersId().map(f -> "teachersId=" + f + ", ").orElse("") +
             optionalCourseFacultiesId().map(f -> "courseFacultiesId=" + f + ", ").orElse("") +
+            optionalStudentId().map(f -> "studentId=" + f + ", ").orElse("") +
+            optionalClassCourseId().map(f -> "classCourseId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

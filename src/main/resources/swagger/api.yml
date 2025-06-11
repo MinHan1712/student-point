@@ -10,6 +10,73 @@ x-wso2-production-endpoints:
   urls:
     - http://127.0.0.1:8085/api
 paths:
+  /conduct/get:
+    get:
+      tags:
+        - classes-resource
+      operationId: conductGet
+      parameters:
+        - name: classIName
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: academicYear
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConductScoresCustomDTO'
+  /conduct/create:
+    post:
+      tags:
+        - classes-resource
+      operationId: conductCreate
+      parameters:
+        - name: classIName
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: academicYear
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+  /class-courser/get/{id}:
+    get:
+      tags:
+        - classes-resource
+      operationId: classCourserGet
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassCourseRes'
   /classes/create:
     post:
       tags:
@@ -187,6 +254,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/GradesCustomDTO'
+                  student:
+                    $ref: '#/components/schemas/StudentCustomDTO'
 
 components:
   schemas:
@@ -322,6 +391,12 @@ components:
           type: string
         lastModifiedDate:
           type: string
+        className:
+          type: string
+        courseYear:
+          type: string
+        faculties:
+          $ref: '#/components/schemas/FacultiesCustomDTO'
 
     ClassesCusDTO:
       type: object
@@ -541,3 +616,33 @@ components:
           items:
             type: integer
             format: int64
+    ResponseObject:
+      type: object
+      additionalProperties: true
+      example:
+        someKey: 'value'
+        anotherKey: 123
+
+    ClassCourseRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/IClassName'
+        facultyId:
+          type: integer
+          format: int64
+
+    IClassName:
+      type: object
+      properties:
+        course:
+          type: string
+        className:
+          type: array
+          items:
+            type: string

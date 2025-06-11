@@ -7,44 +7,14 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity Student.
+        Added the entity ClassCourse.
     -->
-    <changeSet id="20250424154511-1" author="jhipster">
-        <createTable tableName="student">
+    <changeSet id="20250424161236-1" author="jhipster">
+        <createTable tableName="class_course">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="student_code" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="full_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="date_of_birth" type="${datetimeType}">
-                <constraints nullable="true" />
-            </column>
-            <column name="gender" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="address" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="phone_number" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="notes" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="status" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="date_enrollment" type="${datetimeType}">
-                <constraints nullable="true" />
-            </column>
-            <column name="clas_name" type="varchar(255)">
+            <column name="class_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="course_year" type="varchar(255)">
@@ -67,10 +37,8 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="student" columnName="date_of_birth" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="student" columnName="date_enrollment" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="student" columnName="created_date" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="student" columnName="last_modified_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="class_course" columnName="created_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="class_course" columnName="last_modified_date" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -83,24 +51,14 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20250424154511-1-data" author="jhipster" context="faker">
+    <changeSet id="20250424161236-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/student.csv"
+                  file="config/liquibase/fake-data/class_course.csv"
                   separator=";"
-                  tableName="student"
+                  tableName="class_course"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="student_code" type="string"/>
-            <column name="full_name" type="string"/>
-            <column name="date_of_birth" type="date"/>
-            <column name="gender" type="string"/>
-            <column name="address" type="string"/>
-            <column name="phone_number" type="string"/>
-            <column name="email" type="string"/>
-            <column name="notes" type="string"/>
-            <column name="status" type="string"/>
-            <column name="date_enrollment" type="date"/>
-            <column name="clas_name" type="string"/>
+            <column name="class_name" type="string"/>
             <column name="course_year" type="string"/>
             <column name="created_by" type="string"/>
             <column name="created_date" type="date"/>

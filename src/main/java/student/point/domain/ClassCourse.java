@@ -6,12 +6,12 @@ import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * A CourseFaculties.
+ * A ClassCourse.
  */
 @Entity
-@Table(name = "course_faculties")
+@Table(name = "class_course")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class CourseFaculties implements Serializable {
+public class ClassCourse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,8 +21,11 @@ public class CourseFaculties implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "status")
-    private Boolean status;
+    @Column(name = "class_name")
+    private String className;
+
+    @Column(name = "course_year")
+    private String courseYear;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -37,10 +40,6 @@ public class CourseFaculties implements Serializable {
     private Instant lastModifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classes", "courseFaculties" }, allowSetters = true)
-    private Course course;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "teachers", "courseFaculties", "students", "classCourses" }, allowSetters = true)
     private Faculties faculties;
 
@@ -50,7 +49,7 @@ public class CourseFaculties implements Serializable {
         return this.id;
     }
 
-    public CourseFaculties id(Long id) {
+    public ClassCourse id(Long id) {
         this.setId(id);
         return this;
     }
@@ -59,24 +58,37 @@ public class CourseFaculties implements Serializable {
         this.id = id;
     }
 
-    public Boolean getStatus() {
-        return this.status;
+    public String getClassName() {
+        return this.className;
     }
 
-    public CourseFaculties status(Boolean status) {
-        this.setStatus(status);
+    public ClassCourse className(String className) {
+        this.setClassName(className);
         return this;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getCourseYear() {
+        return this.courseYear;
+    }
+
+    public ClassCourse courseYear(String courseYear) {
+        this.setCourseYear(courseYear);
+        return this;
+    }
+
+    public void setCourseYear(String courseYear) {
+        this.courseYear = courseYear;
     }
 
     public String getCreatedBy() {
         return this.createdBy;
     }
 
-    public CourseFaculties createdBy(String createdBy) {
+    public ClassCourse createdBy(String createdBy) {
         this.setCreatedBy(createdBy);
         return this;
     }
@@ -89,7 +101,7 @@ public class CourseFaculties implements Serializable {
         return this.createdDate;
     }
 
-    public CourseFaculties createdDate(Instant createdDate) {
+    public ClassCourse createdDate(Instant createdDate) {
         this.setCreatedDate(createdDate);
         return this;
     }
@@ -102,7 +114,7 @@ public class CourseFaculties implements Serializable {
         return this.lastModifiedBy;
     }
 
-    public CourseFaculties lastModifiedBy(String lastModifiedBy) {
+    public ClassCourse lastModifiedBy(String lastModifiedBy) {
         this.setLastModifiedBy(lastModifiedBy);
         return this;
     }
@@ -115,26 +127,13 @@ public class CourseFaculties implements Serializable {
         return this.lastModifiedDate;
     }
 
-    public CourseFaculties lastModifiedDate(Instant lastModifiedDate) {
+    public ClassCourse lastModifiedDate(Instant lastModifiedDate) {
         this.setLastModifiedDate(lastModifiedDate);
         return this;
     }
 
     public void setLastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public Course getCourse() {
-        return this.course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public CourseFaculties course(Course course) {
-        this.setCourse(course);
-        return this;
     }
 
     public Faculties getFaculties() {
@@ -145,7 +144,7 @@ public class CourseFaculties implements Serializable {
         this.faculties = faculties;
     }
 
-    public CourseFaculties faculties(Faculties faculties) {
+    public ClassCourse faculties(Faculties faculties) {
         this.setFaculties(faculties);
         return this;
     }
@@ -157,10 +156,10 @@ public class CourseFaculties implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof CourseFaculties)) {
+        if (!(o instanceof ClassCourse)) {
             return false;
         }
-        return getId() != null && getId().equals(((CourseFaculties) o).getId());
+        return getId() != null && getId().equals(((ClassCourse) o).getId());
     }
 
     @Override
@@ -172,9 +171,10 @@ public class CourseFaculties implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "CourseFaculties{" +
+        return "ClassCourse{" +
             "id=" + getId() +
-            ", status='" + getStatus() + "'" +
+            ", className='" + getClassName() + "'" +
+            ", courseYear='" + getCourseYear() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

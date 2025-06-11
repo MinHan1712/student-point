@@ -67,6 +67,17 @@ public class Faculties implements Serializable {
     @JsonIgnoreProperties(value = { "course", "faculties" }, allowSetters = true)
     private Set<CourseFaculties> courseFaculties = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
+    @JsonIgnoreProperties(
+        value = { "classRegistrations", "conductScores", "statisticsDetails", "grades", "faculties" },
+        allowSetters = true
+    )
+    private Set<Student> students = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
+    @JsonIgnoreProperties(value = { "faculties" }, allowSetters = true)
+    private Set<ClassCourse> classCourses = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -297,6 +308,68 @@ public class Faculties implements Serializable {
     public Faculties removeCourseFaculties(CourseFaculties courseFaculties) {
         this.courseFaculties.remove(courseFaculties);
         courseFaculties.setFaculties(null);
+        return this;
+    }
+
+    public Set<Student> getStudents() {
+        return this.students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        if (this.students != null) {
+            this.students.forEach(i -> i.setFaculties(null));
+        }
+        if (students != null) {
+            students.forEach(i -> i.setFaculties(this));
+        }
+        this.students = students;
+    }
+
+    public Faculties students(Set<Student> students) {
+        this.setStudents(students);
+        return this;
+    }
+
+    public Faculties addStudent(Student student) {
+        this.students.add(student);
+        student.setFaculties(this);
+        return this;
+    }
+
+    public Faculties removeStudent(Student student) {
+        this.students.remove(student);
+        student.setFaculties(null);
+        return this;
+    }
+
+    public Set<ClassCourse> getClassCourses() {
+        return this.classCourses;
+    }
+
+    public void setClassCourses(Set<ClassCourse> classCourses) {
+        if (this.classCourses != null) {
+            this.classCourses.forEach(i -> i.setFaculties(null));
+        }
+        if (classCourses != null) {
+            classCourses.forEach(i -> i.setFaculties(this));
+        }
+        this.classCourses = classCourses;
+    }
+
+    public Faculties classCourses(Set<ClassCourse> classCourses) {
+        this.setClassCourses(classCourses);
+        return this;
+    }
+
+    public Faculties addClassCourse(ClassCourse classCourse) {
+        this.classCourses.add(classCourse);
+        classCourse.setFaculties(this);
+        return this;
+    }
+
+    public Faculties removeClassCourse(ClassCourse classCourse) {
+        this.classCourses.remove(classCourse);
+        classCourse.setFaculties(null);
         return this;
     }
 

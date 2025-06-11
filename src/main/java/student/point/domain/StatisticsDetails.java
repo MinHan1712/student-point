@@ -50,7 +50,10 @@ public class StatisticsDetails implements Serializable {
     private Instant lastModifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classRegistrations", "conductScores", "statisticsDetails", "grades" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "classRegistrations", "conductScores", "statisticsDetails", "grades", "faculties" },
+        allowSetters = true
+    )
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)

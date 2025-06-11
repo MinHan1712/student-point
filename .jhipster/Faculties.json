@@ -88,6 +88,22 @@
       "relationshipName": "courseFaculties",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "faculties",
+      "relationshipName": "student",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "classCourse",
+      "otherEntityRelationshipName": "faculties",
+      "relationshipName": "classCourse",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
     }
   ],
   "searchEngine": "no",
