@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import student.point.domain.enumeration.ClassRegistrationStatus;
+import student.point.listener.ClassRegListener;
 
 /**
  * A ClassRegistration.
  */
 @Entity
 @Table(name = "class_registration")
+@EntityListeners(ClassRegListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class ClassRegistration implements Serializable {
 
