@@ -18,6 +18,10 @@
       "fieldType": "Instant"
     },
     {
+      "fieldName": "score",
+      "fieldType": "BigDecimal"
+    },
+    {
       "fieldName": "notes",
       "fieldType": "String"
     },

@@ -19,6 +19,8 @@ public class StatisticsDetailsDTO implements Serializable {
 
     private Instant graduationDate;
 
+    private BigDecimal score;
+
     private String notes;
 
     private Boolean status;
@@ -65,6 +67,14 @@ public class StatisticsDetailsDTO implements Serializable {
 
     public void setGraduationDate(Instant graduationDate) {
         this.graduationDate = graduationDate;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
     }
 
     public String getNotes() {
@@ -160,6 +170,7 @@ public class StatisticsDetailsDTO implements Serializable {
             ", code='" + getCode() + "'" +
             ", totalScholarship=" + getTotalScholarship() +
             ", graduationDate='" + getGraduationDate() + "'" +
+            ", score=" + getScore() +
             ", notes='" + getNotes() + "'" +
             ", status='" + getStatus() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +

@@ -30,6 +30,8 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
 
     private InstantFilter graduationDate;
 
+    private BigDecimalFilter score;
+
     private StringFilter notes;
 
     private BooleanFilter status;
@@ -55,6 +57,7 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
         this.code = other.optionalCode().map(StringFilter::copy).orElse(null);
         this.totalScholarship = other.optionalTotalScholarship().map(BigDecimalFilter::copy).orElse(null);
         this.graduationDate = other.optionalGraduationDate().map(InstantFilter::copy).orElse(null);
+        this.score = other.optionalScore().map(BigDecimalFilter::copy).orElse(null);
         this.notes = other.optionalNotes().map(StringFilter::copy).orElse(null);
         this.status = other.optionalStatus().map(BooleanFilter::copy).orElse(null);
         this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
@@ -145,6 +148,25 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
 
     public void setGraduationDate(InstantFilter graduationDate) {
         this.graduationDate = graduationDate;
+    }
+
+    public BigDecimalFilter getScore() {
+        return score;
+    }
+
+    public Optional<BigDecimalFilter> optionalScore() {
+        return Optional.ofNullable(score);
+    }
+
+    public BigDecimalFilter score() {
+        if (score == null) {
+            setScore(new BigDecimalFilter());
+        }
+        return score;
+    }
+
+    public void setScore(BigDecimalFilter score) {
+        this.score = score;
     }
 
     public StringFilter getNotes() {
@@ -332,6 +354,7 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
             Objects.equals(code, that.code) &&
             Objects.equals(totalScholarship, that.totalScholarship) &&
             Objects.equals(graduationDate, that.graduationDate) &&
+            Objects.equals(score, that.score) &&
             Objects.equals(notes, that.notes) &&
             Objects.equals(status, that.status) &&
             Objects.equals(createdBy, that.createdBy) &&
@@ -351,6 +374,7 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
             code,
             totalScholarship,
             graduationDate,
+            score,
             notes,
             status,
             createdBy,
@@ -371,6 +395,7 @@ public class StatisticsDetailsCriteria implements Serializable, Criteria {
             optionalCode().map(f -> "code=" + f + ", ").orElse("") +
             optionalTotalScholarship().map(f -> "totalScholarship=" + f + ", ").orElse("") +
             optionalGraduationDate().map(f -> "graduationDate=" + f + ", ").orElse("") +
+            optionalScore().map(f -> "score=" + f + ", ").orElse("") +
             optionalNotes().map(f -> "notes=" + f + ", ").orElse("") +
             optionalStatus().map(f -> "status=" + f + ", ").orElse("") +
             optionalCreatedBy().map(f -> "createdBy=" + f + ", ").orElse("") +

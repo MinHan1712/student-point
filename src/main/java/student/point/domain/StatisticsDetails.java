@@ -34,6 +34,9 @@ public class StatisticsDetails implements Serializable {
     @Column(name = "graduation_date")
     private Instant graduationDate;
 
+    @Column(name = "score", precision = 21, scale = 2)
+    private BigDecimal score;
+
     @Column(name = "notes")
     private String notes;
 
@@ -115,6 +118,19 @@ public class StatisticsDetails implements Serializable {
 
     public void setGraduationDate(Instant graduationDate) {
         this.graduationDate = graduationDate;
+    }
+
+    public BigDecimal getScore() {
+        return this.score;
+    }
+
+    public StatisticsDetails score(BigDecimal score) {
+        this.setScore(score);
+        return this;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
     }
 
     public String getNotes() {
@@ -248,6 +264,7 @@ public class StatisticsDetails implements Serializable {
             ", code='" + getCode() + "'" +
             ", totalScholarship=" + getTotalScholarship() +
             ", graduationDate='" + getGraduationDate() + "'" +
+            ", score=" + getScore() +
             ", notes='" + getNotes() + "'" +
             ", status='" + getStatus() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
