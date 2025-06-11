@@ -7,12 +7,15 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.CourseType;
+import student.point.listener.ConductScoreListener;
+import student.point.listener.CourseListener;
 
 /**
  * A Course.
  */
 @Entity
 @Table(name = "course")
+@EntityListeners(CourseListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Course implements Serializable {
 

@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import student.point.domain.enumeration.EvaluationConductScores;
+import student.point.listener.ClassListener;
+import student.point.listener.ConductScoreListener;
 
 /**
  * A ConductScores.
  */
 @Entity
 @Table(name = "conduct_scores")
+@EntityListeners(ConductScoreListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class ConductScores implements Serializable {
 

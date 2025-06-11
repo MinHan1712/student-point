@@ -8,12 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.TeacherPosition;
 import student.point.domain.enumeration.TeacherQualification;
+import student.point.listener.CourseListener;
+import student.point.listener.TeachesListener;
 
 /**
  * A Teachers.
  */
 @Entity
 @Table(name = "teachers")
+@EntityListeners(TeachesListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Teachers implements Serializable {
 

@@ -6,12 +6,15 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import student.point.listener.CourseListener;
+import student.point.listener.FacultiesListener;
 
 /**
  * A Faculties.
  */
 @Entity
 @Table(name = "faculties")
+@EntityListeners(FacultiesListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Faculties implements Serializable {
 

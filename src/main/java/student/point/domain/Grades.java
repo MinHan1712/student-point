@@ -7,12 +7,15 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import student.point.domain.enumeration.EvaluationScores;
 import student.point.domain.enumeration.LetterGrade;
+import student.point.listener.CourseListener;
+import student.point.listener.GradesListener;
 
 /**
  * A Grades.
  */
 @Entity
 @Table(name = "grades")
+@EntityListeners(GradesListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Grades implements Serializable {
 

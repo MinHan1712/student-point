@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import student.point.listener.CourseListener;
+import student.point.listener.StatisticDetailListener;
 
 /**
  * A StatisticsDetails.
  */
 @Entity
 @Table(name = "statistics_details")
+@EntityListeners(StatisticDetailListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class StatisticsDetails implements Serializable {
 

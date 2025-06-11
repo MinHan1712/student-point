@@ -8,12 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.ClassesType;
 import student.point.domain.enumeration.DeliveryMode;
+import student.point.listener.ClassListener;
 
 /**
  * A Classes.
  */
 @Entity
 @Table(name = "classes")
+@EntityListeners(ClassListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Classes implements Serializable {
 
