@@ -8,12 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.ClassesType;
 import student.point.domain.enumeration.DeliveryMode;
+import student.point.listener.ClassListener;
 
 /**
  * A Classes.
  */
 @Entity
 @Table(name = "classes")
+@EntityListeners(ClassListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Classes implements Serializable {
 
@@ -70,7 +72,7 @@ public class Classes implements Serializable {
     private String academicYear;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private String parentId;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -93,7 +95,7 @@ public class Classes implements Serializable {
     private Set<Grades> grades = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classes", "faculties" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "classes", "courseFaculties" }, allowSetters = true)
     private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -297,16 +299,16 @@ public class Classes implements Serializable {
         this.academicYear = academicYear;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return this.parentId;
     }
 
-    public Classes parentId(Long parentId) {
+    public Classes parentId(String parentId) {
         this.setParentId(parentId);
         return this;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
@@ -488,7 +490,7 @@ public class Classes implements Serializable {
             ", notes='" + getNotes() + "'" +
             ", description='" + getDescription() + "'" +
             ", academicYear='" + getAcademicYear() + "'" +
-            ", parentId=" + getParentId() +
+            ", parentId='" + getParentId() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

@@ -89,6 +89,22 @@ public class ClassRegistrationQueryService extends QueryService<ClassRegistratio
             if (criteria.getRemarks() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getRemarks(), ClassRegistration_.remarks));
             }
+            if (criteria.getCreatedBy() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), ClassRegistration_.createdBy));
+            }
+            if (criteria.getCreatedDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getCreatedDate(), ClassRegistration_.createdDate));
+            }
+            if (criteria.getLastModifiedBy() != null) {
+                specification = specification.and(
+                    buildStringSpecification(criteria.getLastModifiedBy(), ClassRegistration_.lastModifiedBy)
+                );
+            }
+            if (criteria.getLastModifiedDate() != null) {
+                specification = specification.and(
+                    buildRangeSpecification(criteria.getLastModifiedDate(), ClassRegistration_.lastModifiedDate)
+                );
+            }
             if (criteria.getStudentId() != null) {
                 specification = specification.and(
                     buildSpecification(criteria.getStudentId(), root ->

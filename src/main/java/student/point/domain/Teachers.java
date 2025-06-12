@@ -8,12 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.TeacherPosition;
 import student.point.domain.enumeration.TeacherQualification;
+import student.point.listener.CourseListener;
+import student.point.listener.TeachesListener;
 
 /**
  * A Teachers.
  */
 @Entity
 @Table(name = "teachers")
+@EntityListeners(TeachesListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Teachers implements Serializable {
 
@@ -74,7 +77,7 @@ public class Teachers implements Serializable {
     private Set<Classes> classes = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "teachers", "course" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "teachers", "courseFaculties", "students", "classCourses" }, allowSetters = true)
     private Faculties faculties;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

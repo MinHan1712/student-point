@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import student.point.domain.enumeration.EvaluationConductScores;
+import student.point.listener.ClassListener;
+import student.point.listener.ConductScoreListener;
 
 /**
  * A ConductScores.
  */
 @Entity
 @Table(name = "conduct_scores")
+@EntityListeners(ConductScoreListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class ConductScores implements Serializable {
 
@@ -51,7 +54,10 @@ public class ConductScores implements Serializable {
     private Instant lastModifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classRegistrations", "conductScores", "statisticsDetails", "grades" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "classRegistrations", "conductScores", "statisticsDetails", "grades", "faculties" },
+        allowSetters = true
+    )
     private Student student;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

@@ -7,12 +7,15 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.CourseType;
+import student.point.listener.ConductScoreListener;
+import student.point.listener.CourseListener;
 
 /**
  * A Course.
  */
 @Entity
 @Table(name = "course")
+@EntityListeners(CourseListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Course implements Serializable {
 
@@ -31,7 +34,7 @@ public class Course implements Serializable {
     private String courseTitle;
 
     @Column(name = "credits")
-    private Instant credits;
+    private Integer credits;
 
     @Column(name = "lecture")
     private Integer lecture;
@@ -81,8 +84,8 @@ public class Course implements Serializable {
     private Set<Classes> classes = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
-    @JsonIgnoreProperties(value = { "teachers", "course" }, allowSetters = true)
-    private Set<Faculties> faculties = new HashSet<>();
+    @JsonIgnoreProperties(value = { "course", "faculties" }, allowSetters = true)
+    private Set<CourseFaculties> courseFaculties = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -125,16 +128,16 @@ public class Course implements Serializable {
         this.courseTitle = courseTitle;
     }
 
-    public Instant getCredits() {
+    public Integer getCredits() {
         return this.credits;
     }
 
-    public Course credits(Instant credits) {
+    public Course credits(Integer credits) {
         this.setCredits(credits);
         return this;
     }
 
-    public void setCredits(Instant credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
 
@@ -351,34 +354,34 @@ public class Course implements Serializable {
         return this;
     }
 
-    public Set<Faculties> getFaculties() {
-        return this.faculties;
+    public Set<CourseFaculties> getCourseFaculties() {
+        return this.courseFaculties;
     }
 
-    public void setFaculties(Set<Faculties> faculties) {
-        if (this.faculties != null) {
-            this.faculties.forEach(i -> i.setCourse(null));
+    public void setCourseFaculties(Set<CourseFaculties> courseFaculties) {
+        if (this.courseFaculties != null) {
+            this.courseFaculties.forEach(i -> i.setCourse(null));
         }
-        if (faculties != null) {
-            faculties.forEach(i -> i.setCourse(this));
+        if (courseFaculties != null) {
+            courseFaculties.forEach(i -> i.setCourse(this));
         }
-        this.faculties = faculties;
+        this.courseFaculties = courseFaculties;
     }
 
-    public Course faculties(Set<Faculties> faculties) {
-        this.setFaculties(faculties);
+    public Course courseFaculties(Set<CourseFaculties> courseFaculties) {
+        this.setCourseFaculties(courseFaculties);
         return this;
     }
 
-    public Course addFaculties(Faculties faculties) {
-        this.faculties.add(faculties);
-        faculties.setCourse(this);
+    public Course addCourseFaculties(CourseFaculties courseFaculties) {
+        this.courseFaculties.add(courseFaculties);
+        courseFaculties.setCourse(this);
         return this;
     }
 
-    public Course removeFaculties(Faculties faculties) {
-        this.faculties.remove(faculties);
-        faculties.setCourse(null);
+    public Course removeCourseFaculties(CourseFaculties courseFaculties) {
+        this.courseFaculties.remove(courseFaculties);
+        courseFaculties.setCourse(null);
         return this;
     }
 
@@ -408,7 +411,7 @@ public class Course implements Serializable {
             "id=" + getId() +
             ", courseCode='" + getCourseCode() + "'" +
             ", courseTitle='" + getCourseTitle() + "'" +
-            ", credits='" + getCredits() + "'" +
+            ", credits=" + getCredits() +
             ", lecture=" + getLecture() +
             ", tutorialDiscussion=" + getTutorialDiscussion() +
             ", practical=" + getPractical() +

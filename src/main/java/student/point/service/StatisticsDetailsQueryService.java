@@ -91,6 +91,9 @@ public class StatisticsDetailsQueryService extends QueryService<StatisticsDetail
             if (criteria.getGraduationDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getGraduationDate(), StatisticsDetails_.graduationDate));
             }
+            if (criteria.getScore() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getScore(), StatisticsDetails_.score));
+            }
             if (criteria.getNotes() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNotes(), StatisticsDetails_.notes));
             }

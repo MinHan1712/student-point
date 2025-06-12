@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import student.point.domain.enumeration.ClassRegistrationStatus;
+import student.point.listener.ClassRegListener;
 
 /**
  * A ClassRegistration.
  */
 @Entity
 @Table(name = "class_registration")
+@EntityListeners(ClassRegListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class ClassRegistration implements Serializable {
 
@@ -32,8 +34,23 @@ public class ClassRegistration implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "created_date")
+    private Instant createdDate;
+
+    @Column(name = "last_modified_by")
+    private String lastModifiedBy;
+
+    @Column(name = "last_modified_date")
+    private Instant lastModifiedDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classRegistrations", "conductScores", "statisticsDetails", "grades" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "classRegistrations", "conductScores", "statisticsDetails", "grades", "faculties" },
+        allowSetters = true
+    )
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -94,6 +111,58 @@ public class ClassRegistration implements Serializable {
         this.remarks = remarks;
     }
 
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public ClassRegistration createdBy(String createdBy) {
+        this.setCreatedBy(createdBy);
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Instant getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public ClassRegistration createdDate(Instant createdDate) {
+        this.setCreatedDate(createdDate);
+        return this;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return this.lastModifiedBy;
+    }
+
+    public ClassRegistration lastModifiedBy(String lastModifiedBy) {
+        this.setLastModifiedBy(lastModifiedBy);
+        return this;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Instant getLastModifiedDate() {
+        return this.lastModifiedDate;
+    }
+
+    public ClassRegistration lastModifiedDate(Instant lastModifiedDate) {
+        this.setLastModifiedDate(lastModifiedDate);
+        return this;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     public Student getStudent() {
         return this.student;
     }
@@ -147,6 +216,10 @@ public class ClassRegistration implements Serializable {
             ", registerDate='" + getRegisterDate() + "'" +
             ", status='" + getStatus() + "'" +
             ", remarks='" + getRemarks() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedBy='" + getLastModifiedBy() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             "}";
     }
 }

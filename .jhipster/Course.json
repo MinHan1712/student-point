@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250424162419"
   },
+  "databaseType": "sql",
   "dto": "mapstruct",
   "fields": [
     {
@@ -14,7 +15,7 @@
     },
     {
       "fieldName": "credits",
-      "fieldType": "Instant"
+      "fieldType": "Integer"
     },
     {
       "fieldName": "lecture",
@@ -103,9 +104,9 @@
     },
     {
       "otherEntityField": "id",
-      "otherEntityName": "faculties",
+      "otherEntityName": "courseFaculties",
       "otherEntityRelationshipName": "course",
-      "relationshipName": "faculties",
+      "relationshipName": "courseFaculties",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"
     }

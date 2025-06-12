@@ -42,7 +42,7 @@ public class ClassesDTO implements Serializable {
 
     private String academicYear;
 
-    private Long parentId;
+    private String parentId;
 
     private String createdBy;
 
@@ -176,11 +176,11 @@ public class ClassesDTO implements Serializable {
         this.academicYear = academicYear;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
@@ -272,7 +272,7 @@ public class ClassesDTO implements Serializable {
             ", notes='" + getNotes() + "'" +
             ", description='" + getDescription() + "'" +
             ", academicYear='" + getAcademicYear() + "'" +
-            ", parentId=" + getParentId() +
+            ", parentId='" + getParentId() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

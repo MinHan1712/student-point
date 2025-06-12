@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250424155724"
   },
+  "databaseType": "sql",
   "dto": "mapstruct",
   "fields": [
     {
@@ -64,7 +65,7 @@
     },
     {
       "fieldName": "parentId",
-      "fieldType": "Long"
+      "fieldType": "String"
     },
     {
       "autoGenerate": true,

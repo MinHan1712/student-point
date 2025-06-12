@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250424174108"
   },
+  "databaseType": "sql",
   "dto": "mapstruct",
   "fields": [
     {
@@ -15,6 +16,10 @@
     {
       "fieldName": "graduationDate",
       "fieldType": "Instant"
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "BigDecimal"
     },
     {
       "fieldName": "notes",

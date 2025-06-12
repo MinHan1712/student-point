@@ -7,12 +7,15 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.StatisticsType;
+import student.point.listener.CourseListener;
+import student.point.listener.StatisticsListener;
 
 /**
  * A Statistics.
  */
 @Entity
 @Table(name = "statistics")
+@EntityListeners(StatisticsListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Statistics implements Serializable {
 

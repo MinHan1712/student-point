@@ -17,6 +17,8 @@
       "Student",
       "Classes",
       "ClassRegistration",
+      "CourseFaculties",
+      "ClassCourse",
       "Course",
       "Faculties",
       "Teachers",

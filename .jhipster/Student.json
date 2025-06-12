@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250424154511"
   },
+  "databaseType": "sql",
   "dto": "mapstruct",
   "fields": [
     {
@@ -40,11 +41,19 @@
     {
       "fieldName": "status",
       "fieldType": "StudentStatus",
-      "fieldValues": "Withdrawn,Graduated,Deferment"
+      "fieldValues": "Withdrawn,Graduated,Deferment,Studying"
     },
     {
       "fieldName": "dateEnrollment",
       "fieldType": "Instant"
+    },
+    {
+      "fieldName": "clasName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "courseYear",
+      "fieldType": "String"
     },
     {
       "autoGenerate": true,

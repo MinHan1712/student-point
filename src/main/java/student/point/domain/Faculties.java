@@ -6,12 +6,15 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import student.point.listener.CourseListener;
+import student.point.listener.FacultiesListener;
 
 /**
  * A Faculties.
  */
 @Entity
 @Table(name = "faculties")
+@EntityListeners(FacultiesListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Faculties implements Serializable {
 
@@ -45,15 +48,38 @@ public class Faculties implements Serializable {
     private String notes;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private String parentId;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "created_date")
+    private Instant createdDate;
+
+    @Column(name = "last_modified_by")
+    private String lastModifiedBy;
+
+    @Column(name = "last_modified_date")
+    private Instant lastModifiedDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
     @JsonIgnoreProperties(value = { "classes", "faculties" }, allowSetters = true)
     private Set<Teachers> teachers = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "classes", "faculties" }, allowSetters = true)
-    private Course course;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
+    @JsonIgnoreProperties(value = { "course", "faculties" }, allowSetters = true)
+    private Set<CourseFaculties> courseFaculties = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
+    @JsonIgnoreProperties(
+        value = { "classRegistrations", "conductScores", "statisticsDetails", "grades", "faculties" },
+        allowSetters = true
+    )
+    private Set<Student> students = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculties")
+    @JsonIgnoreProperties(value = { "faculties" }, allowSetters = true)
+    private Set<ClassCourse> classCourses = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -161,17 +187,69 @@ public class Faculties implements Serializable {
         this.notes = notes;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return this.parentId;
     }
 
-    public Faculties parentId(Long parentId) {
+    public Faculties parentId(String parentId) {
         this.setParentId(parentId);
         return this;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public Faculties createdBy(String createdBy) {
+        this.setCreatedBy(createdBy);
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Instant getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public Faculties createdDate(Instant createdDate) {
+        this.setCreatedDate(createdDate);
+        return this;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return this.lastModifiedBy;
+    }
+
+    public Faculties lastModifiedBy(String lastModifiedBy) {
+        this.setLastModifiedBy(lastModifiedBy);
+        return this;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Instant getLastModifiedDate() {
+        return this.lastModifiedDate;
+    }
+
+    public Faculties lastModifiedDate(Instant lastModifiedDate) {
+        this.setLastModifiedDate(lastModifiedDate);
+        return this;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     public Set<Teachers> getTeachers() {
@@ -205,16 +283,96 @@ public class Faculties implements Serializable {
         return this;
     }
 
-    public Course getCourse() {
-        return this.course;
+    public Set<CourseFaculties> getCourseFaculties() {
+        return this.courseFaculties;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseFaculties(Set<CourseFaculties> courseFaculties) {
+        if (this.courseFaculties != null) {
+            this.courseFaculties.forEach(i -> i.setFaculties(null));
+        }
+        if (courseFaculties != null) {
+            courseFaculties.forEach(i -> i.setFaculties(this));
+        }
+        this.courseFaculties = courseFaculties;
     }
 
-    public Faculties course(Course course) {
-        this.setCourse(course);
+    public Faculties courseFaculties(Set<CourseFaculties> courseFaculties) {
+        this.setCourseFaculties(courseFaculties);
+        return this;
+    }
+
+    public Faculties addCourseFaculties(CourseFaculties courseFaculties) {
+        this.courseFaculties.add(courseFaculties);
+        courseFaculties.setFaculties(this);
+        return this;
+    }
+
+    public Faculties removeCourseFaculties(CourseFaculties courseFaculties) {
+        this.courseFaculties.remove(courseFaculties);
+        courseFaculties.setFaculties(null);
+        return this;
+    }
+
+    public Set<Student> getStudents() {
+        return this.students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        if (this.students != null) {
+            this.students.forEach(i -> i.setFaculties(null));
+        }
+        if (students != null) {
+            students.forEach(i -> i.setFaculties(this));
+        }
+        this.students = students;
+    }
+
+    public Faculties students(Set<Student> students) {
+        this.setStudents(students);
+        return this;
+    }
+
+    public Faculties addStudent(Student student) {
+        this.students.add(student);
+        student.setFaculties(this);
+        return this;
+    }
+
+    public Faculties removeStudent(Student student) {
+        this.students.remove(student);
+        student.setFaculties(null);
+        return this;
+    }
+
+    public Set<ClassCourse> getClassCourses() {
+        return this.classCourses;
+    }
+
+    public void setClassCourses(Set<ClassCourse> classCourses) {
+        if (this.classCourses != null) {
+            this.classCourses.forEach(i -> i.setFaculties(null));
+        }
+        if (classCourses != null) {
+            classCourses.forEach(i -> i.setFaculties(this));
+        }
+        this.classCourses = classCourses;
+    }
+
+    public Faculties classCourses(Set<ClassCourse> classCourses) {
+        this.setClassCourses(classCourses);
+        return this;
+    }
+
+    public Faculties addClassCourse(ClassCourse classCourse) {
+        this.classCourses.add(classCourse);
+        classCourse.setFaculties(this);
+        return this;
+    }
+
+    public Faculties removeClassCourse(ClassCourse classCourse) {
+        this.classCourses.remove(classCourse);
+        classCourse.setFaculties(null);
         return this;
     }
 
@@ -249,7 +407,11 @@ public class Faculties implements Serializable {
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", location='" + getLocation() + "'" +
             ", notes='" + getNotes() + "'" +
-            ", parentId=" + getParentId() +
+            ", parentId='" + getParentId() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedBy='" + getLastModifiedBy() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             "}";
     }
 }

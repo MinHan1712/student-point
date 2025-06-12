@@ -99,16 +99,42 @@ public class FacultiesQueryService extends QueryService<Faculties> {
                 specification = specification.and(buildStringSpecification(criteria.getNotes(), Faculties_.notes));
             }
             if (criteria.getParentId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getParentId(), Faculties_.parentId));
+                specification = specification.and(buildStringSpecification(criteria.getParentId(), Faculties_.parentId));
+            }
+            if (criteria.getCreatedBy() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), Faculties_.createdBy));
+            }
+            if (criteria.getCreatedDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getCreatedDate(), Faculties_.createdDate));
+            }
+            if (criteria.getLastModifiedBy() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getLastModifiedBy(), Faculties_.lastModifiedBy));
+            }
+            if (criteria.getLastModifiedDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getLastModifiedDate(), Faculties_.lastModifiedDate));
             }
             if (criteria.getTeachersId() != null) {
                 specification = specification.and(
                     buildSpecification(criteria.getTeachersId(), root -> root.join(Faculties_.teachers, JoinType.LEFT).get(Teachers_.id))
                 );
             }
-            if (criteria.getCourseId() != null) {
+            if (criteria.getCourseFacultiesId() != null) {
                 specification = specification.and(
-                    buildSpecification(criteria.getCourseId(), root -> root.join(Faculties_.course, JoinType.LEFT).get(Course_.id))
+                    buildSpecification(criteria.getCourseFacultiesId(), root ->
+                        root.join(Faculties_.courseFaculties, JoinType.LEFT).get(CourseFaculties_.id)
+                    )
+                );
+            }
+            if (criteria.getStudentId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getStudentId(), root -> root.join(Faculties_.students, JoinType.LEFT).get(Student_.id))
+                );
+            }
+            if (criteria.getClassCourseId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getClassCourseId(), root ->
+                        root.join(Faculties_.classCourses, JoinType.LEFT).get(ClassCourse_.id)
+                    )
                 );
             }
         }

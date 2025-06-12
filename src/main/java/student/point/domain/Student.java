@@ -8,12 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 import student.point.domain.enumeration.StudentStatus;
 import student.point.domain.enumeration.gender;
+import student.point.listener.CourseListener;
+import student.point.listener.StudentListener;
 
 /**
  * A Student.
  */
 @Entity
 @Table(name = "student")
+@EntityListeners(StudentListener.class)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Student implements Serializable {
 
@@ -57,6 +60,12 @@ public class Student implements Serializable {
     @Column(name = "date_enrollment")
     private Instant dateEnrollment;
 
+    @Column(name = "clas_name")
+    private String clasName;
+
+    @Column(name = "course_year")
+    private String courseYear;
+
     @Column(name = "created_by")
     private String createdBy;
 
@@ -84,6 +93,10 @@ public class Student implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     @JsonIgnoreProperties(value = { "student", "classes" }, allowSetters = true)
     private Set<Grades> grades = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "teachers", "courseFaculties", "students", "classCourses" }, allowSetters = true)
+    private Faculties faculties;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -228,6 +241,32 @@ public class Student implements Serializable {
 
     public void setDateEnrollment(Instant dateEnrollment) {
         this.dateEnrollment = dateEnrollment;
+    }
+
+    public String getClasName() {
+        return this.clasName;
+    }
+
+    public Student clasName(String clasName) {
+        this.setClasName(clasName);
+        return this;
+    }
+
+    public void setClasName(String clasName) {
+        this.clasName = clasName;
+    }
+
+    public String getCourseYear() {
+        return this.courseYear;
+    }
+
+    public Student courseYear(String courseYear) {
+        this.setCourseYear(courseYear);
+        return this;
+    }
+
+    public void setCourseYear(String courseYear) {
+        this.courseYear = courseYear;
     }
 
     public String getCreatedBy() {
@@ -406,6 +445,19 @@ public class Student implements Serializable {
         return this;
     }
 
+    public Faculties getFaculties() {
+        return this.faculties;
+    }
+
+    public void setFaculties(Faculties faculties) {
+        this.faculties = faculties;
+    }
+
+    public Student faculties(Faculties faculties) {
+        this.setFaculties(faculties);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -440,6 +492,8 @@ public class Student implements Serializable {
             ", notes='" + getNotes() + "'" +
             ", status='" + getStatus() + "'" +
             ", dateEnrollment='" + getDateEnrollment() + "'" +
+            ", clasName='" + getClasName() + "'" +
+            ", courseYear='" + getCourseYear() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

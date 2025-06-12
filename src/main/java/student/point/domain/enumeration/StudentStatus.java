@@ -7,4 +7,5 @@ public enum StudentStatus {
     Withdrawn,
     Graduated,
     Deferment,
+    Studying,
 }

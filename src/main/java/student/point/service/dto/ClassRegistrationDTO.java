@@ -19,6 +19,14 @@ public class ClassRegistrationDTO implements Serializable {
 
     private String remarks;
 
+    private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
+
     private StudentDTO student;
 
     private ClassesDTO classes;
@@ -53,6 +61,38 @@ public class ClassRegistrationDTO implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Instant getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     public StudentDTO getStudent() {
@@ -100,6 +140,10 @@ public class ClassRegistrationDTO implements Serializable {
             ", registerDate='" + getRegisterDate() + "'" +
             ", status='" + getStatus() + "'" +
             ", remarks='" + getRemarks() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedBy='" + getLastModifiedBy() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             ", student=" + getStudent() +
             ", classes=" + getClasses() +
             "}";

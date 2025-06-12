@@ -48,6 +48,14 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
 
     private StringFilter remarks;
 
+    private StringFilter createdBy;
+
+    private InstantFilter createdDate;
+
+    private StringFilter lastModifiedBy;
+
+    private InstantFilter lastModifiedDate;
+
     private LongFilter studentId;
 
     private LongFilter classesId;
@@ -61,6 +69,10 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
         this.registerDate = other.optionalRegisterDate().map(InstantFilter::copy).orElse(null);
         this.status = other.optionalStatus().map(ClassRegistrationStatusFilter::copy).orElse(null);
         this.remarks = other.optionalRemarks().map(StringFilter::copy).orElse(null);
+        this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
+        this.createdDate = other.optionalCreatedDate().map(InstantFilter::copy).orElse(null);
+        this.lastModifiedBy = other.optionalLastModifiedBy().map(StringFilter::copy).orElse(null);
+        this.lastModifiedDate = other.optionalLastModifiedDate().map(InstantFilter::copy).orElse(null);
         this.studentId = other.optionalStudentId().map(LongFilter::copy).orElse(null);
         this.classesId = other.optionalClassesId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
@@ -147,6 +159,82 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
         this.remarks = remarks;
     }
 
+    public StringFilter getCreatedBy() {
+        return createdBy;
+    }
+
+    public Optional<StringFilter> optionalCreatedBy() {
+        return Optional.ofNullable(createdBy);
+    }
+
+    public StringFilter createdBy() {
+        if (createdBy == null) {
+            setCreatedBy(new StringFilter());
+        }
+        return createdBy;
+    }
+
+    public void setCreatedBy(StringFilter createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public InstantFilter getCreatedDate() {
+        return createdDate;
+    }
+
+    public Optional<InstantFilter> optionalCreatedDate() {
+        return Optional.ofNullable(createdDate);
+    }
+
+    public InstantFilter createdDate() {
+        if (createdDate == null) {
+            setCreatedDate(new InstantFilter());
+        }
+        return createdDate;
+    }
+
+    public void setCreatedDate(InstantFilter createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public StringFilter getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public Optional<StringFilter> optionalLastModifiedBy() {
+        return Optional.ofNullable(lastModifiedBy);
+    }
+
+    public StringFilter lastModifiedBy() {
+        if (lastModifiedBy == null) {
+            setLastModifiedBy(new StringFilter());
+        }
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(StringFilter lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public InstantFilter getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public Optional<InstantFilter> optionalLastModifiedDate() {
+        return Optional.ofNullable(lastModifiedDate);
+    }
+
+    public InstantFilter lastModifiedDate() {
+        if (lastModifiedDate == null) {
+            setLastModifiedDate(new InstantFilter());
+        }
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(InstantFilter lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     public LongFilter getStudentId() {
         return studentId;
     }
@@ -218,6 +306,10 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
             Objects.equals(registerDate, that.registerDate) &&
             Objects.equals(status, that.status) &&
             Objects.equals(remarks, that.remarks) &&
+            Objects.equals(createdBy, that.createdBy) &&
+            Objects.equals(createdDate, that.createdDate) &&
+            Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
+            Objects.equals(lastModifiedDate, that.lastModifiedDate) &&
             Objects.equals(studentId, that.studentId) &&
             Objects.equals(classesId, that.classesId) &&
             Objects.equals(distinct, that.distinct)
@@ -226,7 +318,19 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, registerDate, status, remarks, studentId, classesId, distinct);
+        return Objects.hash(
+            id,
+            registerDate,
+            status,
+            remarks,
+            createdBy,
+            createdDate,
+            lastModifiedBy,
+            lastModifiedDate,
+            studentId,
+            classesId,
+            distinct
+        );
     }
 
     // prettier-ignore
@@ -237,6 +341,10 @@ public class ClassRegistrationCriteria implements Serializable, Criteria {
             optionalRegisterDate().map(f -> "registerDate=" + f + ", ").orElse("") +
             optionalStatus().map(f -> "status=" + f + ", ").orElse("") +
             optionalRemarks().map(f -> "remarks=" + f + ", ").orElse("") +
+            optionalCreatedBy().map(f -> "createdBy=" + f + ", ").orElse("") +
+            optionalCreatedDate().map(f -> "createdDate=" + f + ", ").orElse("") +
+            optionalLastModifiedBy().map(f -> "lastModifiedBy=" + f + ", ").orElse("") +
+            optionalLastModifiedDate().map(f -> "lastModifiedDate=" + f + ", ").orElse("") +
             optionalStudentId().map(f -> "studentId=" + f + ", ").orElse("") +
             optionalClassesId().map(f -> "classesId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +

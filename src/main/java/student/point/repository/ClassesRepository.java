@@ -9,4 +9,4 @@ import student.point.domain.Classes;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ClassesRepository extends JpaRepository<Classes, Long>, JpaSpecificationExecutor<Classes> {}
+public interface ClassesRepository extends JpaRepository<Classes, Long>, JpaSpecificationExecutor<Classes>, ClassesCustomRepository {}

@@ -34,6 +34,10 @@ public class StudentDTO implements Serializable {
 
     private Instant dateEnrollment;
 
+    private String clasName;
+
+    private String courseYear;
+
     private String createdBy;
 
     private Instant createdDate;
@@ -41,6 +45,8 @@ public class StudentDTO implements Serializable {
     private String lastModifiedBy;
 
     private Instant lastModifiedDate;
+
+    private FacultiesDTO faculties;
 
     public Long getId() {
         return id;
@@ -130,6 +136,22 @@ public class StudentDTO implements Serializable {
         this.dateEnrollment = dateEnrollment;
     }
 
+    public String getClasName() {
+        return clasName;
+    }
+
+    public void setClasName(String clasName) {
+        this.clasName = clasName;
+    }
+
+    public String getCourseYear() {
+        return courseYear;
+    }
+
+    public void setCourseYear(String courseYear) {
+        this.courseYear = courseYear;
+    }
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -160,6 +182,14 @@ public class StudentDTO implements Serializable {
 
     public void setLastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public FacultiesDTO getFaculties() {
+        return faculties;
+    }
+
+    public void setFaculties(FacultiesDTO faculties) {
+        this.faculties = faculties;
     }
 
     @Override
@@ -198,10 +228,13 @@ public class StudentDTO implements Serializable {
             ", notes='" + getNotes() + "'" +
             ", status='" + getStatus() + "'" +
             ", dateEnrollment='" + getDateEnrollment() + "'" +
+            ", clasName='" + getClasName() + "'" +
+            ", courseYear='" + getCourseYear() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             ", lastModifiedDate='" + getLastModifiedDate() + "'" +
+            ", faculties=" + getFaculties() +
             "}";
     }
 }

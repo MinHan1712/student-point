@@ -1,5 +1,6 @@
 package student.point.config;
 
+import java.util.Collections;
 import java.util.concurrent.Executor;
 import javax.sql.DataSource;
 import liquibase.integration.spring.SpringLiquibase;
@@ -57,8 +58,8 @@ public class LiquibaseConfiguration {
             );
         }
         liquibase.setChangeLog("classpath:config/liquibase/master.xml");
-        if (!CollectionUtils.isEmpty(liquibaseProperties.getContexts())) {
-            liquibase.setContexts(StringUtils.collectionToCommaDelimitedString(liquibaseProperties.getContexts()));
+        if (!CollectionUtils.isEmpty(Collections.singleton(liquibaseProperties.getContexts()))) {
+            liquibase.setContexts(StringUtils.collectionToCommaDelimitedString(Collections.singleton(liquibaseProperties.getContexts())));
         }
         liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
         liquibase.setLiquibaseSchema(liquibaseProperties.getLiquibaseSchema());
@@ -66,8 +67,10 @@ public class LiquibaseConfiguration {
         liquibase.setDatabaseChangeLogLockTable(liquibaseProperties.getDatabaseChangeLogLockTable());
         liquibase.setDatabaseChangeLogTable(liquibaseProperties.getDatabaseChangeLogTable());
         liquibase.setDropFirst(liquibaseProperties.isDropFirst());
-        if (!CollectionUtils.isEmpty(liquibaseProperties.getLabelFilter())) {
-            liquibase.setLabelFilter(StringUtils.collectionToCommaDelimitedString(liquibaseProperties.getLabelFilter()));
+        if (!CollectionUtils.isEmpty(Collections.singleton(liquibaseProperties.getLabelFilter()))) {
+            liquibase.setLabelFilter(
+                StringUtils.collectionToCommaDelimitedString(Collections.singleton(liquibaseProperties.getLabelFilter()))
+            );
         }
         liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
         liquibase.setRollbackFile(liquibaseProperties.getRollbackFile());
