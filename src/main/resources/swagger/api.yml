@@ -10,6 +10,23 @@ x-wso2-production-endpoints:
   urls:
     - http://127.0.0.1:8085/api
 paths:
+  /statistic/create:
+    post:
+      tags:
+        - statistic
+      operationId: statisticCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatisticCreate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
   /conduct/get:
     get:
       tags:
@@ -646,3 +663,18 @@ components:
           type: array
           items:
             type: string
+
+    StatisticCreate:
+      type: object
+      properties:
+        type:
+          type: string
+        facultyId:
+          type: integer
+          format: int64
+        academicYear:
+          type: string
+        minTotalCredits:
+          type: integer
+        node:
+          type: string
