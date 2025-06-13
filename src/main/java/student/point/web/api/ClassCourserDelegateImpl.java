@@ -44,7 +44,7 @@ public class ClassCourserDelegateImpl implements ClassCourserApiDelegate {
 
             IClassName className = new IClassName();
             className.setCourse(courseYear);
-            className.setClassName(classCourses);
+            className.setClasName(classCourses);
             iClassNames.add(className);
         }
         res.setCourses(iClassNames);

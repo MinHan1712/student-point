@@ -10,6 +10,28 @@ x-wso2-production-endpoints:
   urls:
     - http://127.0.0.1:8085/api
 paths:
+  /login:
+    post:
+      tags:
+        - statistic
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
   /statistic/create:
     post:
       tags:
@@ -659,7 +681,7 @@ components:
       properties:
         course:
           type: string
-        className:
+        clasName:
           type: array
           items:
             type: string

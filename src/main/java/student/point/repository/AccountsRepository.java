@@ -9,4 +9,6 @@ import student.point.domain.Accounts;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface AccountsRepository extends JpaRepository<Accounts, Long>, JpaSpecificationExecutor<Accounts> {}
+public interface AccountsRepository extends JpaRepository<Accounts, Long>, JpaSpecificationExecutor<Accounts> {
+    Accounts findFirstByLoginAndPassword(String login, String password);
+}

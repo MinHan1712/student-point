@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,13 +58,13 @@ public class GradesDelegateImpl implements GradesApiDelegate {
             .stream()
             .map(row -> {
                 SemesterGradeFullSummary item = new SemesterGradeFullSummary();
-                item.setStudentId(String.valueOf(row[0]));
-                item.setFullName(String.valueOf(row[1]));
-                item.setAcademicYear(String.valueOf(row[2]));
-                item.setTotalCredits(String.valueOf(row[3]));
-                item.setAvgScore10(String.valueOf(row[4]));
-                item.setAvgScore4(String.valueOf(row[5]));
-                item.setSemesterRanking(String.valueOf(row[6]));
+                item.setStudentId(Objects.isNull(row[0]) ? null : row[0].toString());
+                item.setFullName(Objects.isNull(row[1]) ? null : row[1].toString());
+                item.setAcademicYear(Objects.isNull(row[2]) ? null : row[2].toString());
+                item.setTotalCredits(Objects.isNull(row[3]) ? null : row[3].toString());
+                item.setAvgScore10(Objects.isNull(row[4]) ? null : row[4].toString());
+                item.setAvgScore4(Objects.isNull(row[5]) ? null : row[5].toString());
+                item.setSemesterRanking(Objects.isNull(row[6]) ? null : row[6].toString());
                 return item;
             })
             .collect(Collectors.toList());

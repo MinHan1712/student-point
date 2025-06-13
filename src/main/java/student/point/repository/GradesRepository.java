@@ -22,50 +22,54 @@ public interface GradesRepository extends JpaRepository<Grades, Long>, JpaSpecif
     @Query(
         value = """
             (
-             SELECT
-                 s.id AS student_id,
-                 s.full_name,
-                 c.academic_year,
-                 COALESCE(SUM(g.credit), 0) AS total_credits,
-                 COALESCE(ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_10,
-                 COALESCE(ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_4,
-                 CASE
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 3.6 THEN 'Xuất sắc'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 3.2 THEN 'Giỏi'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 2.5 THEN 'Khá'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 2.0 THEN 'Trung bình'
-                     ELSE 'Yếu'
-                 END AS semester_ranking,0 AS sort_order
-             FROM grades g
-             JOIN student s ON g.student_id = s.id
-             JOIN classes c ON g.classes_id = c.id
-             WHERE g.status = TRUE AND s.id = :studentId
-             GROUP BY s.id, s.full_name, c.academic_year
-         )
+                SELECT
+                    s.id AS student_id,
+                    s.full_name,
+                    c.academic_year,
+                    COALESCE(SUM(g.credit), 0) AS total_credits,
+                    COALESCE(ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_10,
+                    COALESCE(ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_4,
+                    CASE
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 8.5 THEN 'Giỏi'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 7.0 THEN 'Khá'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 5.5 THEN 'Trung bình'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 4.0 THEN 'Trung bình yếu'
+                        ELSE 'Yếu'
+                    END AS semester_ranking,
+                    0 AS sort_order
+                FROM grades g
+                JOIN student s ON g.student_id = s.id
+                JOIN classes c ON g.classes_id = c.id
+                WHERE g.status = TRUE AND s.id = :studentId
+                GROUP BY s.id, s.full_name, c.academic_year
+            )
 
-         UNION ALL
+            UNION ALL
 
-         (
-             SELECT
-                 s.id AS student_id,
-                 s.full_name,
-                 'Tổng kết' AS academic_year,
-                 COALESCE(SUM(g.credit), 0) AS total_credits,
-                 ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) AS avg_score_10,
-                 ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) AS avg_score_4,
-                 CASE
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 3.6 THEN 'Xuất sắc'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 3.2 THEN 'Giỏi'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 2.5 THEN 'Khá'
-                     WHEN ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 2.0 THEN 'Trung bình'
-                     ELSE 'Yếu'
-                 END AS semester_ranking,  1 AS sort_order
-             FROM grades g
-             JOIN student s ON g.student_id = s.id
-             WHERE g.status = TRUE AND s.id = :studentId
-             GROUP BY s.id, s.full_name
-         )
-         ORDER BY sort_order desc, academic_year asc
+            (
+                SELECT
+                    s.id AS student_id,
+                    s.full_name,
+                    'Tổng kết' AS academic_year,
+                    COALESCE(SUM(g.credit), 0) AS total_credits,
+                    COALESCE(ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_10,
+                    COALESCE(ROUND(SUM(COALESCE(g.score_4, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2), 0) AS avg_score_4,
+                    CASE
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 8.5 THEN 'Giỏi'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 7.0 THEN 'Khá'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 5.5 THEN 'Trung bình'
+                        WHEN ROUND(SUM(COALESCE(g.score_10, 0) * g.credit) / NULLIF(SUM(g.credit), 0), 2) >= 4.0 THEN 'Trung bình yếu'
+                        ELSE 'Yếu'
+                    END AS semester_ranking,
+                    1 AS sort_order
+                FROM grades g
+                JOIN student s ON g.student_id = s.id
+                WHERE g.status = TRUE AND s.id = :studentId
+                GROUP BY s.id, s.full_name
+            )
+
+            ORDER BY sort_order DESC, academic_year ASC;
+
         """,
         nativeQuery = true
     )

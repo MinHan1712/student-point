@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import student.point.security.*;
@@ -23,9 +24,17 @@ import tech.jhipster.config.JHipsterProperties;
 public class SecurityConfiguration {
 
     private final JHipsterProperties jHipsterProperties;
+    private final TokenProvider tokenProvider;
+    private final ApplicationProperties applicationProperties;
 
-    public SecurityConfiguration(JHipsterProperties jHipsterProperties) {
+    public SecurityConfiguration(
+        JHipsterProperties jHipsterProperties,
+        TokenProvider tokenProvider,
+        ApplicationProperties applicationProperties
+    ) {
         this.jHipsterProperties = jHipsterProperties;
+        this.tokenProvider = tokenProvider;
+        this.applicationProperties = applicationProperties;
     }
 
     @Bean
@@ -37,6 +46,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         http
             .cors(withDefaults())
+            .addFilterBefore(new JWTFilter(tokenProvider, applicationProperties), UsernamePasswordAuthenticationFilter.class)
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
@@ -47,9 +57,9 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/api/activate")).permitAll()
                     .requestMatchers(mvc.pattern("/api/account/reset-password/init")).permitAll()
                     .requestMatchers(mvc.pattern("/api/account/reset-password/finish")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/admin/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/**")).permitAll()
+                    .requestMatchers(mvc.pattern("/api/admin")).permitAll()
+                    .requestMatchers(mvc.pattern("/api/login")).permitAll()
+                    .requestMatchers(mvc.pattern("/api/**")).authenticated()
                     .requestMatchers(mvc.pattern("/v3/api-docs/**")).permitAll()
                     .requestMatchers(mvc.pattern("/management/health")).permitAll()
                     .requestMatchers(mvc.pattern("/management/health/**")).permitAll()
