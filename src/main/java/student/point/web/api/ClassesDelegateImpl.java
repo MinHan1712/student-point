@@ -71,7 +71,9 @@ public class ClassesDelegateImpl implements ClassesApiDelegate {
     @Override
     public ResponseEntity<ClassesCustomDTO> updateClasses(Long id, ClassesCustomDTO classesCustomDTO) throws Exception {
         ClassesDTO classesDTO = classesCustomMapper.toEntity(classesCustomDTO);
-        CourseDTO courseDTO = classesDTO.getCourse() != null ? courseService.findOne(classesDTO.getCourse().getId()).orElse(null) : null;
+        CourseDTO courseDTO = classesCustomDTO.getCourseId() != null
+            ? courseService.findOne(classesCustomDTO.getCourseId()).orElse(null)
+            : null;
 
         if (Objects.nonNull(courseDTO)) {
             classesDTO.setCourse(courseDTO);
@@ -82,6 +84,7 @@ public class ClassesDelegateImpl implements ClassesApiDelegate {
             teachersDTO.setId(classesCustomDTO.getTeachersId());
             classesDTO.setTeachers(teachersDTO);
         }
+        classesDTO.setStatus(true);
         classesDTO = classesService
             .partialUpdate(classesDTO)
             .orElseThrow(() -> new BadRequestAlertException("Class update failed", id.toString(), "classupdatefailed"));
@@ -95,21 +98,6 @@ public class ClassesDelegateImpl implements ClassesApiDelegate {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    //    @Override
-    //    @Transactional(readOnly = true)
-    //    public ResponseEntity<List<ClassesCustomDTO>> getClasses(String classCode, String startDate, String endDate, Boolean status, Integer page, Integer size) throws Exception {
-    //        Pageable pageable = new Pageable
-    //        List<Classes> classes = classesRepository.findByClasses(classCode, startDate, endDate, status, Pageable.);
-    //        List<ClassesCustomDTO> response = new ArrayList<>();
-    //        if (!ObjectUtils.isEmpty(classes)) {
-    //            response.addAll(classesCustom2Mapper.toDto(classes));
-    //        }
-    //
-    //        HttpHeaders headers = new HttpHeaders();
-    //        headers.add("X-Total-Count", Long.toString(page.getTotalElements()));
-    //        return ResponseEntity.ok().headers(headers).body(response);
-    //    }
 
     @Override
     public ResponseEntity<ClassesCustomDTO> deleteClasses(Long id) throws Exception {
@@ -156,7 +144,7 @@ public class ClassesDelegateImpl implements ClassesApiDelegate {
             teachersDTO.setId(classesCustomDTO.getTeachersId());
             classesDTO.setTeachers(teachersDTO);
         }
-
+        classesDTO.setStatus(true);
         classesDTO = classesService.save(classesDTO);
         if (Objects.isNull(classesCustomDTO.getParentId())) {
             classesDTO.setParentId(classesDTO.getId().toString());
@@ -226,6 +214,7 @@ public class ClassesDelegateImpl implements ClassesApiDelegate {
             Grades gradesCurrent = gradesMap.get(id);
             if (gradesCurrent != null) {
                 gradesCurrent.setStatus(true);
+                gradesCurrent.setCredit(Objects.isNull(courseDTO) ? null : ObjectUtils.defaultIfNull(courseDTO.getCredits(), null));
                 gradesList.add(gradesCurrent);
             } else {
                 Grades grades = new Grades();

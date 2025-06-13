@@ -1,12 +1,12 @@
 package student.point.web.api;
 
-import jakarta.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -64,11 +64,11 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
 
                 // Set Student reference
                 Student student = new Student();
-                student.setId(((Number) row[0]).longValue());
+                student.setId(Objects.isNull(row[0]) ? null : ((Number) row[0]).longValue());
                 detail.setStudent(student);
 
                 // GPA (score_4)
-                detail.setScore(new BigDecimal(row[7].toString())); // gpa_4
+                detail.setScore(Objects.isNull(row[7]) ? null : new BigDecimal(row[7].toString())); // gpa_4
 
                 // Học bổng: chia theo chỉ số index
                 detail.setTotalScholarship(index < max ? money1 : money2);
@@ -102,11 +102,11 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
 
                 // Set Student reference
                 Student student = new Student();
-                student.setId(((Number) row[0]).longValue());
+                student.setId(Objects.isNull(row[0]) ? null : ((Number) row[0]).longValue());
                 detail.setStudent(student);
 
                 // GPA (score_4)
-                detail.setScore(new BigDecimal(row[7].toString())); // gpa_4
+                detail.setScore(Objects.isNull(row[7]) ? null : new BigDecimal(row[7].toString())); // gpa_4
 
                 // Trạng thái và liên kết thống kê
                 detail.setStatus(true);
@@ -135,13 +135,13 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
 
                 // Set Student reference
                 Student student = new Student();
-                student.setId(((Number) row[0]).longValue());
+                student.setId(Objects.isNull(row[0]) ? null : ((Number) row[0]).longValue());
                 detail.setStudent(student);
 
                 studentList.add(student.getId());
 
                 // GPA (score_4)
-                detail.setScore(new BigDecimal(row[7].toString())); // gpa_4
+                detail.setScore(Objects.isNull(row[7]) ? null : new BigDecimal(row[7].toString())); // gpa_4
 
                 // Trạng thái và liên kết thống kê
                 detail.setStatus(true);

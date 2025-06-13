@@ -1,8 +1,9 @@
 package student.point.security;
 
+import static com.nimbusds.jose.JOSEObjectType.JWT;
+
 import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.proc.DefaultJOSEObjectTypeVerifier;
-import student.point.management.SecurityMetersService;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,8 +22,7 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Component;
-
-import static com.nimbusds.jose.JOSEObjectType.JWT;
+import student.point.management.SecurityMetersService;
 
 @Component
 public class TokenProvider {
@@ -53,8 +53,8 @@ public class TokenProvider {
                     metersService.trackTokenExpired();
                 } else if (
                     e.getMessage().contains("Invalid JWT serialization") ||
-                        e.getMessage().contains("Malformed token") ||
-                        e.getMessage().contains("Invalid unsecured/JWS/JWE")
+                    e.getMessage().contains("Malformed token") ||
+                    e.getMessage().contains("Invalid unsecured/JWS/JWE")
                 ) {
                     metersService.trackTokenMalformed();
                 } else {
@@ -67,7 +67,7 @@ public class TokenProvider {
     }
 
     public Authentication getAuthentication(Map<String, Object> claims, List<String> roles, String backendToken, String gatewayToken) {
-        String user = getSubject(claims);
+        String user = "admin";
         Collection<? extends GrantedAuthority> authorities = roles
             .stream()
             .filter(auth -> !auth.trim().isEmpty())
