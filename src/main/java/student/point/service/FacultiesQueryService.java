@@ -101,6 +101,9 @@ public class FacultiesQueryService extends QueryService<Faculties> {
             if (criteria.getParentId() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getParentId(), Faculties_.parentId));
             }
+            if (criteria.getStatus() != null) {
+                specification = specification.and(buildSpecification(criteria.getStatus(), Faculties_.status));
+            }
             if (criteria.getCreatedBy() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), Faculties_.createdBy));
             }

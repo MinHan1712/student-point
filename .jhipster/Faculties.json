@@ -38,6 +38,10 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
       "autoGenerate": true,
       "columnType": "varchar(50)",
       "fieldName": "createdBy",

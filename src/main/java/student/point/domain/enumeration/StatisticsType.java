@@ -7,4 +7,5 @@ public enum StatisticsType {
     Scholarship,
     Warning,
     Graduation,
+    Retake,
 }

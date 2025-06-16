@@ -8,4 +8,5 @@ public enum StudentStatus {
     Graduated,
     Deferment,
     Studying,
+    Deleted,
 }

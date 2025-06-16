@@ -1,11 +1,11 @@
-id;faculty_code;faculty_name;description;established_date;phone_number;location;notes;parent_id;created_by;created_date;last_modified_by;last_modified_date
-1;thoroughly during fooey;until buzzing fooey;excluding huzzah extricate;2025-04-24T06:44:11;foolish worst;oof outstanding;captain;numeracy helplessly;pfft;2025-04-24T00:35:27;sightseeing;2025-04-23T22:52:05
-2;quaver;zowie;ad;2025-04-23T20:52:21;unless spew;down but aftermath;how vanish;ah minion hmph;meanwhile reluctantly ugh;2025-04-23T19:41:01;consign fervently;2025-04-24T14:52:26
-3;but pace;incidentally;dress chainstay;2025-04-24T15:20:20;however off confide;hm honestly;powerfully stranger;before aboard upwardly;regarding salty;2025-04-24T06:06:06;flight bah;2025-04-23T17:13:13
-4;despite underpants acidly;newsprint;how ah;2025-04-24T00:28:53;provider;pro zowie question;ugh for unsightly;putrefy whoa tiny;wherever er vamoose;2025-04-23T18:21:35;monstrous when;2025-04-24T15:30:46
-5;corrupt aw;made-up hydrant;as;2025-04-24T02:27:57;before steep where;from;before;considering bestride overdue;verbally;2025-04-23T17:17:37;scale happily;2025-04-23T17:02:00
-6;internal bestride;collaboration;provided;2025-04-24T10:39:44;blah athwart attest;since hence till;er;fervently;mysteriously;2025-04-24T04:33:53;disk mortally;2025-04-24T05:13:26
-7;hunger unkempt;plump;simple;2025-04-23T19:30:08;innocently multicolored correctly;on statement proceed;with willing longingly;instead;so pillory bookend;2025-04-24T13:41:15;unaware across;2025-04-24T14:15:54
-8;absent kindheartedly;quaintly secondary verve;dismal yum;2025-04-23T23:00:07;awesome impure;certainly aboard;discontinue forenenst absentmindedly;neatly nocturnal by;throughout cycle judgementally;2025-04-24T01:35:50;fervently bludgeon detain;2025-04-24T01:40:47
-9;surprisingly;masterpiece cheerfully;dramatic after;2025-04-24T13:49:35;innocently yearningly;revitalise obvious;highly whose slap;lively;aboard;2025-04-24T08:18:08;gah;2025-04-24T16:33:03
-10;veto yowza;as window cappelletti;confused rubric;2025-04-24T07:19:29;crocodile;orientate plagiarise;lazily;onset mmm forager;consequently ordinary;2025-04-24T07:55:42;unexpectedly;2025-04-24T15:31:37
+id;faculty_code;faculty_name;description;established_date;phone_number;location;notes;parent_id;status;created_by;created_date;last_modified_by;last_modified_date
+1;thoroughly during fooey;until buzzing fooey;excluding huzzah extricate;2025-04-24T06:44:11;foolish worst;oof outstanding;captain;numeracy helplessly;true;final;2025-04-23T22:42:38;barring;2025-04-23T17:41:42
+2;grandiose zowie;ad;ha;2025-04-24T09:19:33;silky down;stratify loosely how;well-worn;fooey up resolve;true;cap;2025-04-24T11:52:57;like conclude;2025-04-24T02:31:35
+3;offset finally;woot ew;boyfriend patiently;2025-04-24T01:51:17;swear;whereas;while;handle;true;grade fantastic;2025-04-23T17:02:51;stranger shyly;2025-04-23T19:26:56
+4;blaspheme injunction;confound noted;flight bah;2025-04-23T17:13:13;despite underpants acidly;newsprint;how ah;psst;false;pro zowie question;2025-04-24T09:44:12;trained;2025-04-23T22:23:27
+5;for gruesome woot;transplant runny;uncomfortable usefully;2025-04-24T03:27:38;seldom rim second;justly numb finally;community;sweetly;true;excluding;2025-04-24T07:11:20;funny unabashedly;2025-04-24T10:07:35
+6;surprisingly;nor;french step-mother continually;2025-04-24T11:58:08;marimba truly;ack comestible christen;muddy spirited blah;ugh;false;citizen manner;2025-04-24T11:03:17;now equate;2025-04-24T08:34:18
+7;spectacles gah;kinase whereas bah;rightfully comfortable;2025-04-24T11:26:51;meh close;innocently multicolored correctly;on statement proceed;with willing longingly;true;um so pillory;2025-04-24T00:12:31;footrest unaware across;2025-04-24T14:15:54
+8;absent kindheartedly;quaintly secondary verve;dismal yum;2025-04-23T23:00:07;awesome impure;certainly aboard;discontinue forenenst absentmindedly;neatly nocturnal by;false;bobble drat;2025-04-23T20:19:31;pleasing;2025-04-24T03:24:28
+9;desk even governance;excitedly pro;indeed;2025-04-23T21:52:21;which upon lest;the when;pleased boldly whether;plait carelessly;false;how;2025-04-24T12:10:33;rapid veto yowza;2025-04-24T12:10:55
+10;ridge incidentally;hoot floodlight;yum crocodile;2025-04-24T00:54:56;perspire;inasmuch slowly;slope;brr among shrilly;false;luck well-groomed;2025-04-23T20:30:51;off;2025-04-24T08:47:59
