@@ -40,6 +40,8 @@ public class FacultiesCriteria implements Serializable, Criteria {
 
     private StringFilter parentId;
 
+    private BooleanFilter status;
+
     private StringFilter createdBy;
 
     private InstantFilter createdDate;
@@ -70,6 +72,7 @@ public class FacultiesCriteria implements Serializable, Criteria {
         this.location = other.optionalLocation().map(StringFilter::copy).orElse(null);
         this.notes = other.optionalNotes().map(StringFilter::copy).orElse(null);
         this.parentId = other.optionalParentId().map(StringFilter::copy).orElse(null);
+        this.status = other.optionalStatus().map(BooleanFilter::copy).orElse(null);
         this.createdBy = other.optionalCreatedBy().map(StringFilter::copy).orElse(null);
         this.createdDate = other.optionalCreatedDate().map(InstantFilter::copy).orElse(null);
         this.lastModifiedBy = other.optionalLastModifiedBy().map(StringFilter::copy).orElse(null);
@@ -255,6 +258,25 @@ public class FacultiesCriteria implements Serializable, Criteria {
 
     public void setParentId(StringFilter parentId) {
         this.parentId = parentId;
+    }
+
+    public BooleanFilter getStatus() {
+        return status;
+    }
+
+    public Optional<BooleanFilter> optionalStatus() {
+        return Optional.ofNullable(status);
+    }
+
+    public BooleanFilter status() {
+        if (status == null) {
+            setStatus(new BooleanFilter());
+        }
+        return status;
+    }
+
+    public void setStatus(BooleanFilter status) {
+        this.status = status;
     }
 
     public StringFilter getCreatedBy() {
@@ -447,6 +469,7 @@ public class FacultiesCriteria implements Serializable, Criteria {
             Objects.equals(location, that.location) &&
             Objects.equals(notes, that.notes) &&
             Objects.equals(parentId, that.parentId) &&
+            Objects.equals(status, that.status) &&
             Objects.equals(createdBy, that.createdBy) &&
             Objects.equals(createdDate, that.createdDate) &&
             Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
@@ -471,6 +494,7 @@ public class FacultiesCriteria implements Serializable, Criteria {
             location,
             notes,
             parentId,
+            status,
             createdBy,
             createdDate,
             lastModifiedBy,
@@ -496,6 +520,7 @@ public class FacultiesCriteria implements Serializable, Criteria {
             optionalLocation().map(f -> "location=" + f + ", ").orElse("") +
             optionalNotes().map(f -> "notes=" + f + ", ").orElse("") +
             optionalParentId().map(f -> "parentId=" + f + ", ").orElse("") +
+            optionalStatus().map(f -> "status=" + f + ", ").orElse("") +
             optionalCreatedBy().map(f -> "createdBy=" + f + ", ").orElse("") +
             optionalCreatedDate().map(f -> "createdDate=" + f + ", ").orElse("") +
             optionalLastModifiedBy().map(f -> "lastModifiedBy=" + f + ", ").orElse("") +

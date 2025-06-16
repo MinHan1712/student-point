@@ -128,4 +128,33 @@ public interface StatisticsDetailsRepository extends JpaRepository<StatisticsDet
         @Param("facultyId") Long facultyId,
         @Param("minTotalCredits") Integer minTotalCredits
     );
+
+    @Query(
+        value = """
+           SELECT
+              s.id AS student_id,
+              s.student_code,
+              s.full_name,
+              s.course_year AS academic_year,
+              f.id AS faculty_id,
+              f.faculty_name, g.score_4
+          FROM
+              student s
+          JOIN faculties f ON s.faculties_id = f.id
+          JOIN grades g ON g.student_id = s.id
+          JOIN classes c ON g.classes_id = c.id
+          WHERE
+              f.id = :facultyId
+              AND c.academic_year = :academicYear
+              AND g.status = true
+              AND g.score_4 <= 0.5 and g.score_4 is not null
+              and (:classesId is null or g.classes_id = :classesId);
+        """,
+        nativeQuery = true
+    )
+    List<Object[]> findRetakeStudents(
+        @Param("academicYear") String academicYear,
+        @Param("facultyId") Long facultyId,
+        @Param("classesId") Long classesId
+    );
 }

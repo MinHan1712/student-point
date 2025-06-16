@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,7 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
     public ResponseEntity<Map<String, Object>> statisticCreate(StatisticCreate body) throws Exception {
         Statistics statistics = new Statistics();
         statistics.setAcademicYear(body.getAcademicYear());
-        statistics.setNotes(body.getNode());
+        statistics.setNotes(body.getNote());
         statistics.setStatus(true);
         if (StatisticsType.Scholarship.name().equals(body.getType())) {
             statistics.setType(StatisticsType.Scholarship);
@@ -78,7 +77,7 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
                 detail.setStatistics(statistics);
 
                 // Ghi chú, ngày tốt nghiệp
-                detail.setNotes(body.getNode());
+                detail.setNotes(body.getNote());
                 detail.setGraduationDate(Instant.now());
 
                 detailsList.add(detail);
@@ -113,7 +112,7 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
                 detail.setStatistics(statistics);
 
                 // Ghi chú, ngày tốt nghiệp
-                detail.setNotes(body.getNode());
+                detail.setNotes(body.getNote());
                 detail.setGraduationDate(Instant.now());
 
                 detailsList.add(detail);
@@ -148,7 +147,7 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
                 detail.setStatistics(statistics);
 
                 // Ghi chú, ngày tốt nghiệp
-                detail.setNotes(body.getNode());
+                detail.setNotes(body.getNote());
                 detail.setGraduationDate(Instant.now());
 
                 detailsList.add(detail);
@@ -163,6 +162,38 @@ public class StatisticDelegateImpl implements StatisticApiDelegate {
                 }
                 studentRepository.saveAll(updateStudent);
             }
+        }
+        if (StatisticsType.Retake.name().equals(body.getType())) {
+            statistics.setType(StatisticsType.Retake);
+            statistics = statisticsRepository.save(statistics);
+            List<Object[]> results = statisticsDetailsRepository.findRetakeStudents(
+                body.getAcademicYear(),
+                body.getFacultyId(),
+                body.getClassesId()
+            );
+            List<StatisticsDetails> detailsList = new ArrayList<>();
+            for (Object[] row : results) {
+                StatisticsDetails detail = new StatisticsDetails();
+
+                // Set Student reference
+                Student student = new Student();
+                student.setId(Objects.isNull(row[0]) ? null : ((Number) row[0]).longValue());
+                detail.setStudent(student);
+
+                // GPA (score_4)
+                detail.setScore(Objects.isNull(row[6]) ? null : new BigDecimal(row[6].toString())); // gpa_4
+
+                // Trạng thái và liên kết thống kê
+                detail.setStatus(true);
+                detail.setStatistics(statistics);
+
+                // Ghi chú, ngày tốt nghiệp
+                detail.setNotes(body.getNote());
+                detail.setGraduationDate(Instant.now());
+
+                detailsList.add(detail);
+            }
+            statisticsDetailsRepository.saveAll(detailsList);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

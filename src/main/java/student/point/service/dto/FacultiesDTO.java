@@ -28,6 +28,8 @@ public class FacultiesDTO implements Serializable {
 
     private String parentId;
 
+    private Boolean status;
+
     private String createdBy;
 
     private Instant createdDate;
@@ -108,6 +110,14 @@ public class FacultiesDTO implements Serializable {
         this.parentId = parentId;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -174,6 +184,7 @@ public class FacultiesDTO implements Serializable {
             ", location='" + getLocation() + "'" +
             ", notes='" + getNotes() + "'" +
             ", parentId='" + getParentId() + "'" +
+            ", status='" + getStatus() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

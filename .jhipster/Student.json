@@ -41,7 +41,7 @@
     {
       "fieldName": "status",
       "fieldType": "StudentStatus",
-      "fieldValues": "Withdrawn,Graduated,Deferment,Studying"
+      "fieldValues": "Withdrawn,Graduated,Deferment,Studying,Deleted"
     },
     {
       "fieldName": "dateEnrollment",

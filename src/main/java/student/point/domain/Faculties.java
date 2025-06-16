@@ -50,6 +50,9 @@ public class Faculties implements Serializable {
     @Column(name = "parent_id")
     private String parentId;
 
+    @Column(name = "status")
+    private Boolean status;
+
     @Column(name = "created_by")
     private String createdBy;
 
@@ -198,6 +201,19 @@ public class Faculties implements Serializable {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public Boolean getStatus() {
+        return this.status;
+    }
+
+    public Faculties status(Boolean status) {
+        this.setStatus(status);
+        return this;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public String getCreatedBy() {
@@ -408,6 +424,7 @@ public class Faculties implements Serializable {
             ", location='" + getLocation() + "'" +
             ", notes='" + getNotes() + "'" +
             ", parentId='" + getParentId() + "'" +
+            ", status='" + getStatus() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +

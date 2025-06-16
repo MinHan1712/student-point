@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import student.point.domain.enumeration.EvaluationScores;
 import student.point.domain.enumeration.LetterGrade;
-import student.point.listener.CourseListener;
 import student.point.listener.GradesListener;
 
 /**

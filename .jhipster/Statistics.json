@@ -16,7 +16,7 @@
     {
       "fieldName": "type",
       "fieldType": "StatisticsType",
-      "fieldValues": "Scholarship,Warning,Graduation "
+      "fieldValues": "Scholarship,Warning,Graduation,Retake"
     },
     {
       "fieldName": "notes",

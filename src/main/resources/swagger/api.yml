@@ -698,5 +698,8 @@ components:
           type: string
         minTotalCredits:
           type: integer
-        node:
+        note:
           type: string
+        classesId:
+          type: integer
+          format: int64
